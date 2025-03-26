@@ -323,4 +323,15 @@ function showVariants() {
     if (models.length === 1) {
         initMainViews();
     }
+}
+
+function handleBack() {
+    // اگر در نمای variants هستیم
+    if (document.getElementById('variants-view').style.display === 'flex') {
+        backToMainView();
+    }
+    // اگر در نمای اصلی هستیم
+    else {
+        window.location.href = 'brands.html';
+    }
 } 
