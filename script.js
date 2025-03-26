@@ -231,11 +231,11 @@ function updateFullscreenModel(index, isRTX2060 = false) {
         sceneFullscreen.remove(modelFullscreen);
     }
 
-    const colors = [0x60a5fa, 0xff4444, 0x44ff44];
-    const modelIndex = isRTX2060 ? 0 : index + 3;
+    const colors = [0x60a5fa, 0xff4444, 0x44ff44]; // آبی، قرمز، سبز
+    const modelIndex = isRTX2060 ? 0 : index + 3; // برای 2060 همیشه از مدل اول استفاده میکنیم
     const geometry = new THREE.BoxGeometry(2, 1, 3);
     const material = new THREE.MeshPhongMaterial({ 
-        color: isRTX2060 ? 0x60a5fa : colors[index],
+        color: isRTX2060 ? 0x60a5fa : colors[index], // 2060 همیشه آبی باشه
         specular: 0x050505,
         shininess: 100
     });
@@ -248,8 +248,7 @@ function updateFullscreenModel(index, isRTX2060 = false) {
     const specsTitle = document.querySelector('.specs-title');
     const specsContent = document.querySelector('.specs-content');
     if (specsTitle && specsContent) {
-        // برای RTX 2060 فقط نام ساده نمایش داده شود
-        specsTitle.textContent = isRTX2060 ? "RTX 2060" : GPU_MODELS[modelIndex].name;
+        specsTitle.textContent = GPU_MODELS[modelIndex].name;
         specsContent.innerHTML = `
             <div class="spec-item">
                 <span class="spec-label">Memory:</span>
