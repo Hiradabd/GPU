@@ -12,7 +12,34 @@
 </head>
 <body>
     <div class="fullscreen-view" id="fullscreen-view">
-        <!-- ... existing fullscreen view code ... -->
+        <div class="fullscreen-content">
+            <div class="model-section">
+                <div id="model-container-full"></div>
+            </div>
+            <div class="divider"></div>
+            <div class="specs-section">
+                <h2 class="specs-title">RTX 4090 Specifications</h2>
+                <div class="specs-content">
+                    <div class="spec-item">
+                        <span class="spec-label">CUDA Cores:</span>
+                        <span class="spec-value">16,384</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Memory:</span>
+                        <span class="spec-value">24GB GDDR6X</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Clock Speed:</span>
+                        <span class="spec-value">2.52 GHz</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Memory Interface:</span>
+                        <span class="spec-value">384-bit</span>
+                    </div>
+                </div>
+            </div>
+            <button class="close-button" onclick="closeFullView()">Back</button>
+        </div>
     </div>
 
     <div class="container nvidia-container">
@@ -111,7 +138,8 @@
             </div>
         </div>
 
-        <button class="back-button" onclick="window.location.href='brands.html'">Back</button>
+        <!-- Single back button that changes behavior based on view -->
+        <button class="back-button" onclick="backToMainView()">Back</button>
     </div>
     <script src="script.js"></script>
 </body>
