@@ -12,27 +12,27 @@
 </head>
 <body>
     <div class="fullscreen-view" id="fullscreen-view">
-        <div class="fullscreen-content">
-            <div class="model-section">
-                <div id="model-container-full"></div>
-            </div>
-            <div class="divider"></div>
-            <div class="specs-section">
-                <h2 class="specs-title">RTX 4090 Specifications</h2>
-                <div class="specs-content">
-                    <!-- Specifications content will be here -->
-                </div>
-            </div>
-            <button class="close-button" onclick="closeFullView()">Back</button>
-        </div>
+        <!-- ... existing fullscreen view code ... -->
     </div>
 
     <div class="container nvidia-container">
-        <div class="models-row">
-            <!-- First GPU -->
+        <!-- Main View -->
+        <div id="main-view" class="models-row">
             <div class="model-info-wrapper">
                 <div class="model-view-section">
                     <div id="model-container"></div>
+                    <h2 class="model-title-small">RTX 4090</h2>
+                    <button class="menu-button" onclick="showVariants()">View Models</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Variants View (Initially Hidden) -->
+        <div id="variants-view" class="models-row" style="display: none;">
+            <!-- First GPU -->
+            <div class="model-info-wrapper">
+                <div class="model-view-section">
+                    <div id="model-container1"></div>
                     <h2 class="model-title-small">RTX 4090 Founders Edition</h2>
                     <button class="menu-button" onclick="openFullView(0)">View Full Model</button>
                 </div>
@@ -110,6 +110,7 @@
                 </div>
             </div>
         </div>
+
         <button class="back-button" onclick="window.location.href='brands.html'">Back</button>
     </div>
     <script src="script.js"></script>
