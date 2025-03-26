@@ -247,29 +247,25 @@ function updateFullscreenModel(index) {
 
 function animate() {
     requestAnimationFrame(animate);
-
-    // Animate main view
-    if (mainModel && isMainRotating) {
-        mainModel.rotation.y += 0.005;
-    }
-    mainControls?.update();
-    mainRenderer?.render(mainScene, mainCamera);
-
-    // Animate variants
+    
     models.forEach((model, index) => {
         if (model && isRotating[index]) {
             model.rotation.y += 0.005;
         }
     });
     
+    if (modelFullscreen && document.getElementById('fullscreen-view').classList.contains('active')) {
+        modelFullscreen.rotation.y += 0.005;
+    }
+    
     controls.forEach(control => control?.update());
+    controlsFullscreen?.update();
+    
     scenes.forEach((scene, index) => {
         renderers[index]?.render(scene, cameras[index]);
     });
 
-    // Animate fullscreen view
-    if (modelFullscreen && document.getElementById('fullscreen-view').classList.contains('active')) {
-        modelFullscreen.rotation.y += 0.005;
+    if (document.getElementById('fullscreen-view').classList.contains('active')) {
         rendererFullscreen.render(sceneFullscreen, cameraFullscreen);
     }
 }
@@ -297,6 +293,11 @@ function openFullView(index) {
 
 function closeFullView() {
     document.getElementById('fullscreen-view').classList.remove('active');
+}
+
+function backToMainView() {
+    document.getElementById('variants-view').style.display = 'none';
+    document.getElementById('main-view').style.display = 'flex';
 }
 
 window.addEventListener('resize', () => {
