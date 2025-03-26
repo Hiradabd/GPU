@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA RTX 4090</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+<body>
+    <div class="fullscreen-view" id="fullscreen-view">
+        <div class="fullscreen-content">
+            <div class="model-section">
+                <div id="model-container-full"></div>
+            </div>
+            <div class="divider"></div>
+            <div class="specs-section">
+                <h2 class="specs-title">RTX 4090 Specifications</h2>
+                <div class="specs-content">
+                    <!-- Specifications content will be here -->
+                </div>
+            </div>
+            <button class="close-button" onclick="closeFullView()">Back</button>
+        </div>
+    </div>
+
+    <div class="container nvidia-container">
+        <div class="models-row">
+            <!-- First GPU -->
+            <div class="model-info-wrapper">
+                <div class="model-view-section">
+                    <div id="model-container"></div>
+                    <h2 class="model-title-small">RTX 4090 Founders Edition</h2>
+                    <button class="menu-button" onclick="openFullView(0)">View Full Model</button>
+                </div>
+                <div class="quick-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">CUDA Cores:</span>
+                        <span class="spec-value">16,384</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Memory:</span>
+                        <span class="spec-value">24GB GDDR6X</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Clock Speed:</span>
+                        <span class="spec-value">2.52 GHz</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Memory Interface:</span>
+                        <span class="spec-value">384-bit</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second GPU -->
+            <div class="model-info-wrapper">
+                <div class="model-view-section">
+                    <div id="model-container2"></div>
+                    <h2 class="model-title-small">RTX 4090 ROG STRIX OC</h2>
+                    <button class="menu-button" onclick="openFullView(1)">View Full Model</button>
+                </div>
+                <div class="quick-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">CUDA Cores:</span>
+                        <span class="spec-value">16,384</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Memory:</span>
+                        <span class="spec-value">24GB GDDR6X</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Clock Speed:</span>
+                        <span class="spec-value">2.61 GHz</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Memory Interface:</span>
+                        <span class="spec-value">384-bit</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third GPU -->
+            <div class="model-info-wrapper">
+                <div class="model-view-section">
+                    <div id="model-container3"></div>
+                    <h2 class="model-title-small">RTX 4090 SUPRIM X</h2>
+                    <button class="menu-button" onclick="openFullView(2)">View Full Model</button>
+                </div>
+                <div class="quick-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">CUDA Cores:</span>
+                        <span class="spec-value">16,384</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Memory:</span>
+                        <span class="spec-value">24GB GDDR6X</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Clock Speed:</span>
+                        <span class="spec-value">2.63 GHz</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Memory Interface:</span>
+                        <span class="spec-value">384-bit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="back-button" onclick="window.location.href='brands.html'">Back</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
