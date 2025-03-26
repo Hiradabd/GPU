@@ -1,39 +1,71 @@
 let scenes = [], cameras = [], renderers = [], controls = [], models = [];
 let sceneFullscreen, cameraFullscreen, rendererFullscreen, controlsFullscreen, modelFullscreen;
-let isRotating = [false, false, false];
+let isRotating = [false, false];  // برای دو مدل اصلی
 let currentModelIndex = 0; // Track which model is being viewed in fullscreen
 let mainScene, mainCamera, mainRenderer, mainControls, mainModel;
 let isMainRotating = false;
 
 const GPU_MODELS = [
+    // RTX 2060 models
+    {
+        name: "RTX 2060 Founders Edition",
+        color: 0x60a5fa,
+        specs: {
+            memory: "6GB GDDR6",
+            releaseDate: "-",
+            powerUsage: "-",
+            baseClock: "-"
+        }
+    },
+    {
+        name: "RTX 2060 ROG STRIX OC",
+        color: 0xff4444,
+        specs: {
+            memory: "6GB GDDR6",
+            releaseDate: "-",
+            powerUsage: "-",
+            baseClock: "-"
+        }
+    },
+    {
+        name: "RTX 2060 SUPRIM X",
+        color: 0x44ff44,
+        specs: {
+            memory: "6GB GDDR6",
+            releaseDate: "-",
+            powerUsage: "-",
+            baseClock: "-"
+        }
+    },
+    // RTX 4090 models
     {
         name: "RTX 4090 Founders Edition",
         color: 0x60a5fa,
         specs: {
-            cores: "16,384",
             memory: "24GB GDDR6X",
-            clock: "2.52 GHz",
-            interface: "384-bit"
+            releaseDate: "October 2022",
+            powerUsage: "450W",
+            baseClock: "2.23 GHz"
         }
     },
     {
         name: "RTX 4090 ROG STRIX OC",
         color: 0xff4444,
         specs: {
-            cores: "16,384",
             memory: "24GB GDDR6X",
-            clock: "2.61 GHz",
-            interface: "384-bit"
+            releaseDate: "October 2022",
+            powerUsage: "450W",
+            baseClock: "2.61 GHz"
         }
     },
     {
         name: "RTX 4090 SUPRIM X",
         color: 0x44ff44,
         specs: {
-            cores: "16,384",
             memory: "24GB GDDR6X",
-            clock: "2.63 GHz",
-            interface: "384-bit"
+            releaseDate: "October 2022",
+            powerUsage: "450W",
+            baseClock: "2.63 GHz"
         }
     }
 ];
@@ -82,7 +114,7 @@ function initMainView() {
 }
 
 function init() {
-    // Initialize just the main view first
+    // Initialize main models (2060 and 4090)
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x374151);
     scenes.push(scene);
@@ -93,9 +125,10 @@ function init() {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(250, 250);
-    document.getElementById('model-container').appendChild(renderer.domElement);
+    document.getElementById('model-container-2060').appendChild(renderer.domElement);
     renderers.push(renderer);
 
+    // RTX 2060
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
     scene.add(ambientLight);
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
@@ -109,7 +142,7 @@ function init() {
 
     const geometry = new THREE.BoxGeometry(2, 1, 3);
     const material = new THREE.MeshPhongMaterial({ 
-        color: 0x60a5fa,
+        color: 0x60a5fa,  // آبی برای فوندرز
         specular: 0x050505,
         shininess: 100
     });
@@ -118,6 +151,37 @@ function init() {
     model.rotation.y = -0.5;
     scene.add(model);
     models.push(model);
+
+    // RTX 4090 با همان رنگ‌های مشخص شده
+    const scene4090 = new THREE.Scene();
+    scene4090.background = new THREE.Color(0x374151);
+    scenes.push(scene4090);
+
+    const camera4090 = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    camera4090.position.z = 5;
+    cameras.push(camera4090);
+
+    const renderer4090 = new THREE.WebGLRenderer({ antialias: true });
+    renderer4090.setSize(250, 250);
+    document.getElementById('model-container').appendChild(renderer4090.domElement);
+    renderers.push(renderer4090);
+
+    const ambientLight4090 = new THREE.AmbientLight(0xffffff, 0.7);
+    scene4090.add(ambientLight4090);
+    const directionalLight4090 = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight4090.position.set(5, 5, 5);
+    scene4090.add(directionalLight4090);
+
+    const control4090 = new THREE.OrbitControls(camera4090, renderer4090.domElement);
+    control4090.enableDamping = true;
+    control4090.dampingFactor = 0.05;
+    controls.push(control4090);
+
+    const model4090 = new THREE.Mesh(geometry, material);
+    model4090.rotation.x = 0.3;
+    model4090.rotation.y = -0.5;
+    scene4090.add(model4090);
+    models.push(model4090);
 
     initFullscreenView();
     animate();
@@ -130,57 +194,16 @@ function setupHoverListeners() {
     modelWrappers.forEach((wrapper, index) => {
         wrapper.addEventListener('mouseenter', () => {
             isRotating[index] = true;
-            models[index].rotation.x = 0.3;
-            models[index].rotation.y = -0.5;
         });
         
         wrapper.addEventListener('mouseleave', () => {
             isRotating[index] = false;
-            models[index].rotation.x = 0.3;
-            models[index].rotation.y = -0.5;
+            if (models[index]) {
+                models[index].rotation.x = 0.3;
+                models[index].rotation.y = -0.5;
+            }
         });
     });
-}
-
-function initMainViews() {
-    for (let i = 0; i < 3; i++) {
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x374151);
-        scenes.push(scene);
-
-        const camera = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
-        camera.position.z = 5;
-        cameras.push(camera);
-
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(250, 250);
-        const containerId = `model-container${i + 1}`;
-        document.getElementById(containerId).appendChild(renderer.domElement);
-        renderers.push(renderer);
-
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-        scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight.position.set(5, 5, 5);
-        scene.add(directionalLight);
-
-        const control = new THREE.OrbitControls(camera, renderer.domElement);
-        control.enableDamping = true;
-        control.dampingFactor = 0.05;
-        controls.push(control);
-
-        const geometry = new THREE.BoxGeometry(2, 1, 3);
-        const material = new THREE.MeshPhongMaterial({ 
-            color: GPU_MODELS[i].color,
-            specular: 0x050505,
-            shininess: 100
-        });
-        const model = new THREE.Mesh(geometry, material);
-        model.rotation.x = 0.3;
-        model.rotation.y = -0.5;
-        scene.add(model);
-        models.push(model);
-    }
 }
 
 function initFullscreenView() {
@@ -203,14 +226,16 @@ function initFullscreenView() {
     updateFullscreenModel(0);
 }
 
-function updateFullscreenModel(index) {
+function updateFullscreenModel(index, isRTX2060 = false) {
     if (modelFullscreen) {
         sceneFullscreen.remove(modelFullscreen);
     }
 
+    const colors = [0x60a5fa, 0xff4444, 0x44ff44];
+    const modelIndex = isRTX2060 ? 0 : index + 3;
     const geometry = new THREE.BoxGeometry(2, 1, 3);
     const material = new THREE.MeshPhongMaterial({ 
-        color: GPU_MODELS[index].color,
+        color: isRTX2060 ? 0x60a5fa : colors[index],
         specular: 0x050505,
         shininess: 100
     });
@@ -223,23 +248,24 @@ function updateFullscreenModel(index) {
     const specsTitle = document.querySelector('.specs-title');
     const specsContent = document.querySelector('.specs-content');
     if (specsTitle && specsContent) {
-        specsTitle.textContent = GPU_MODELS[index].name;
+        // برای RTX 2060 فقط نام ساده نمایش داده شود
+        specsTitle.textContent = isRTX2060 ? "RTX 2060" : GPU_MODELS[modelIndex].name;
         specsContent.innerHTML = `
             <div class="spec-item">
-                <span class="spec-label">CUDA Cores:</span>
-                <span class="spec-value">${GPU_MODELS[index].specs.cores}</span>
-            </div>
-            <div class="spec-item">
                 <span class="spec-label">Memory:</span>
-                <span class="spec-value">${GPU_MODELS[index].specs.memory}</span>
+                <span class="spec-value">${GPU_MODELS[modelIndex].specs.memory}</span>
             </div>
             <div class="spec-item">
-                <span class="spec-label">Clock Speed:</span>
-                <span class="spec-value">${GPU_MODELS[index].specs.clock}</span>
+                <span class="spec-label">Release Date:</span>
+                <span class="spec-value">${GPU_MODELS[modelIndex].specs.releaseDate}</span>
             </div>
             <div class="spec-item">
-                <span class="spec-label">Memory Interface:</span>
-                <span class="spec-value">${GPU_MODELS[index].specs.interface}</span>
+                <span class="spec-label">Power Usage (TDP):</span>
+                <span class="spec-value">${GPU_MODELS[modelIndex].specs.powerUsage}</span>
+            </div>
+            <div class="spec-item">
+                <span class="spec-label">Base Clock:</span>
+                <span class="spec-value">${GPU_MODELS[modelIndex].specs.baseClock}</span>
             </div>
         `;
     }
@@ -270,12 +296,11 @@ function animate() {
     }
 }
 
-function openFullView(index) {
-    currentModelIndex = index;
+function openFullView(index, isRTX2060 = false) {
     const fullscreenView = document.getElementById('fullscreen-view');
     const containerFull = document.getElementById('model-container-full');
     
-    updateFullscreenModel(index);
+    updateFullscreenModel(index, isRTX2060);
     fullscreenView.classList.add('active');
     
     if (!containerFull.hasChildNodes()) {
@@ -315,14 +340,80 @@ function navigateToGPUPage() {
     window.location.href = 'gpu-page.html';
 }
 
+function initMainViews() {
+    const variantContainers = ['model-container1', 'model-container2', 'model-container3'];
+    const colors = [0x60a5fa, 0xff4444, 0x44ff44]; // آبی، قرمز، سبز
+    
+    variantContainers.forEach((containerId, index) => {
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x374151);
+        scenes.push(scene);
+
+        const camera = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+        camera.position.z = 5;
+        cameras.push(camera);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(250, 250);
+        const container = document.getElementById(containerId);
+        if (container) {
+            container.innerHTML = '';
+            container.appendChild(renderer.domElement);
+        }
+        renderers.push(renderer);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+
+        const control = new THREE.OrbitControls(camera, renderer.domElement);
+        control.enableDamping = true;
+        control.dampingFactor = 0.05;
+        controls.push(control);
+
+        const geometry = new THREE.BoxGeometry(2, 1, 3);
+        const material = new THREE.MeshPhongMaterial({ 
+            color: colors[index],
+            specular: 0x050505,
+            shininess: 100
+        });
+        const model = new THREE.Mesh(geometry, material);
+        model.rotation.x = 0.3;
+        model.rotation.y = -0.5;
+        scene.add(model);
+        models.push(model);
+    });
+}
+
+// اضافه کردن setupHoverListeners برای variants
+function setupVariantHoverListeners() {
+    const variantWrappers = document.querySelectorAll('#variants-view .model-info-wrapper');
+    
+    variantWrappers.forEach((wrapper, index) => {
+        wrapper.addEventListener('mouseenter', () => {
+            isRotating[index] = true;
+        });
+        
+        wrapper.addEventListener('mouseleave', () => {
+            isRotating[index] = false;
+            if (models[index]) {
+                models[index].rotation.x = 0.3;
+                models[index].rotation.y = -0.5;
+            }
+        });
+    });
+}
+
+// آپدیت تابع showVariants
 function showVariants() {
     document.getElementById('main-view').style.display = 'none';
     document.getElementById('variants-view').style.display = 'flex';
+    window.scrollTo(0, 0);
     
-    // Initialize the three variant models if they haven't been initialized yet
-    if (models.length === 1) {
-        initMainViews();
-    }
+    initMainViews();
+    setupVariantHoverListeners();
 }
 
 function handleBack() {
@@ -334,4 +425,62 @@ function handleBack() {
     else {
         window.location.href = 'brands.html';
     }
+}
+
+// اضافه کردن تابع جدید برای نمایش variants مدل 2060
+function showVariants2060() {
+    document.getElementById('main-view').style.display = 'none';
+    document.getElementById('variants-view-2060').style.display = 'flex';
+    window.scrollTo(0, 0);
+    
+    initMainViews2060();
+    setupVariantHoverListeners();
+}
+
+// تابع جدید برای مقداردهی اولیه مدل‌های 2060
+function initMainViews2060() {
+    const variantContainers = ['model-container-2060-1', 'model-container-2060-2', 'model-container-2060-3'];
+    const colors = [0x60a5fa, 0xff4444, 0x44ff44]; // آبی، قرمز، سبز
+    
+    variantContainers.forEach((containerId, index) => {
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x374151);
+        scenes.push(scene);
+
+        const camera = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+        camera.position.z = 5;
+        cameras.push(camera);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(250, 250);
+        const container = document.getElementById(containerId);
+        if (container) {
+            container.innerHTML = '';
+            container.appendChild(renderer.domElement);
+        }
+        renderers.push(renderer);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+        scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+        directionalLight.position.set(5, 5, 5);
+        scene.add(directionalLight);
+
+        const control = new THREE.OrbitControls(camera, renderer.domElement);
+        control.enableDamping = true;
+        control.dampingFactor = 0.05;
+        controls.push(control);
+
+        const geometry = new THREE.BoxGeometry(2, 1, 3);
+        const material = new THREE.MeshPhongMaterial({ 
+            color: colors[index],
+            specular: 0x050505,
+            shininess: 100
+        });
+        const model = new THREE.Mesh(geometry, material);
+        model.rotation.x = 0.3;
+        model.rotation.y = -0.5;
+        scene.add(model);
+        models.push(model);
+    });
 } 

@@ -45,18 +45,64 @@
     <div class="container nvidia-container">
         <!-- Main View -->
         <div id="main-view" class="models-row">
+            <!-- RTX 2060 -->
+            <div class="model-info-wrapper">
+                <div class="model-view-section">
+                    <div id="model-container-2060"></div>
+                    <h2 class="model-title-small">RTX 2060</h2>
+                    <button class="menu-button" onclick="openFullView(0, true)">View Full Model</button>
+                </div>
+                <div class="quick-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Memory:</span>
+                        <span class="spec-value">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Release Date:</span>
+                        <span class="spec-value">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Power Usage (TDP):</span>
+                        <span class="spec-value">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Base Clock:</span>
+                        <span class="spec-value">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RTX 4090 -->
             <div class="model-info-wrapper">
                 <div class="model-view-section">
                     <div id="model-container"></div>
                     <h2 class="model-title-small">RTX 4090</h2>
                     <button class="menu-button" onclick="showVariants()">View Models</button>
                 </div>
+                <div class="quick-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Memory:</span>
+                        <span class="spec-value">24GB GDDR6X</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Release Date:</span>
+                        <span class="spec-value">October 2022</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Power Usage (TDP):</span>
+                        <span class="spec-value">450W</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Base Clock:</span>
+                        <span class="spec-value">2.23 GHz</span>
+                    </div>
+                </div>
             </div>
         </div>
 
         <!-- Variants View (Initially Hidden) -->
         <div id="variants-view" class="models-row" style="display: none;">
-            <!-- First GPU -->
+            <!-- Founders Edition -->
             <div class="model-info-wrapper">
                 <div class="model-view-section">
                     <div id="model-container1"></div>
@@ -83,7 +129,7 @@
                 </div>
             </div>
 
-            <!-- Second GPU -->
+            <!-- ROG STRIX -->
             <div class="model-info-wrapper">
                 <div class="model-view-section">
                     <div id="model-container2"></div>
@@ -110,7 +156,7 @@
                 </div>
             </div>
 
-            <!-- Third GPU -->
+            <!-- SUPRIM X -->
             <div class="model-info-wrapper">
                 <div class="model-view-section">
                     <div id="model-container3"></div>
@@ -137,6 +183,37 @@
                 </div>
             </div>
         </div>
+
+        <!-- RTX 2060 variants view -->
+        <div id="variants-view-2060" class="models-row" style="display: none;">
+            <!-- Founders Edition -->
+            <div class="model-info-wrapper">
+                <div class="model-view-section">
+                    <div id="model-container-2060-1"></div>
+                    <h2 class="model-title-small">RTX 2060</h2>
+                    <button class="menu-button" onclick="openFullView(0, true)">View Full Model</button>
+                </div>
+                <div class="quick-specs">
+                    <div class="spec-item">
+                        <span class="spec-label">Memory:</span>
+                        <span class="spec-value">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Release Date:</span>
+                        <span class="spec-value">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Power Usage (TDP):</span>
+                        <span class="spec-value">-</span>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Base Clock:</span>
+                        <span class="spec-value">-</span>
+                    </div>
+                </div>
+            </div>
+
+
 
         <!-- دکمه back با تابع جدید -->
         <button class="back-button" onclick="handleBack()">Back</button>

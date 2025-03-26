@@ -78,14 +78,16 @@ body {
 
 .models-row {
     display: flex;
+    flex-direction: column;
     gap: 4rem;
-    justify-content: center;
+    align-items: center;
     margin: 2rem 0;
-    flex-wrap: wrap;
     padding: 0 2rem;
 }
 
 .model-info-wrapper {
+    width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,8 +96,6 @@ body {
     padding: 1.5rem;
     border-radius: 10px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    min-width: 340px;
-    max-width: 400px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
