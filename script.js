@@ -1,6 +1,6 @@
 let scenes = [], cameras = [], renderers = [], controls = [], models = [];
 let sceneFullscreen, cameraFullscreen, rendererFullscreen, controlsFullscreen, modelFullscreen;
-let isRotating = [false, false];  // برای دو مدل اصلی
+let isRotating = [false, false, false, false, false, false, false, false, false];  // برای 9 تا مدل
 let currentModelIndex = 0; // Track which model is being viewed in fullscreen
 let mainScene, mainCamera, mainRenderer, mainControls, mainModel;
 let isMainRotating = false;
@@ -8,13 +8,13 @@ let isMainRotating = false;
 const GPU_MODELS = [
     // RTX 2060 models
     {
-        name: "RTX 2060 Founders Edition",
+        name: "RTX 2060",
         color: 0x60a5fa,
         specs: {
             memory: "6GB GDDR6",
-            releaseDate: "-",
-            powerUsage: "-",
-            baseClock: "-"
+            releaseDate: "January 7, 2019",
+            powerUsage: "160 W",
+            baseClock: "1,365 MHz"
         }
     },
     {
@@ -22,9 +22,9 @@ const GPU_MODELS = [
         color: 0xff4444,
         specs: {
             memory: "6GB GDDR6",
-            releaseDate: "-",
-            powerUsage: "-",
-            baseClock: "-"
+            releaseDate: "January 7, 2019",
+            powerUsage: "160 W",
+            baseClock: "1,365 MHz"
         }
     },
     {
@@ -32,9 +32,69 @@ const GPU_MODELS = [
         color: 0x44ff44,
         specs: {
             memory: "6GB GDDR6",
-            releaseDate: "-",
-            powerUsage: "-",
-            baseClock: "-"
+            releaseDate: "January 7, 2019",
+            powerUsage: "160 W",
+            baseClock: "1,365 MHz"
+        }
+    },
+    {
+        name: "RTX 2060 Super",
+        color: 0x60a5fa,
+        specs: {
+            memory: "8GB GDDR6",
+            releaseDate: "July 9, 2019",
+            powerUsage: "175 W",
+            baseClock: "1,470 MHz"
+        }
+    },
+    {
+        name: "RTX 2070",
+        color: 0x60a5fa,
+        specs: {
+            memory: "8GB GDDR6",
+            releaseDate: "October 17, 2018",
+            powerUsage: "175 W",
+            baseClock: "1,410 MHz"
+        }
+    },
+    {
+        name: "RTX 2070 Super",
+        color: 0x60a5fa,
+        specs: {
+            memory: "8GB GDDR6",
+            releaseDate: "July 9, 2019",
+            powerUsage: "215 W",
+            baseClock: "1,605 MHz"
+        }
+    },
+    {
+        name: "RTX 2080",
+        color: 0x60a5fa,
+        specs: {
+            memory: "8GB GDDR6",
+            releaseDate: "September 20, 2018",
+            powerUsage: "215 W",
+            baseClock: "1,515 MHz"
+        }
+    },
+    {
+        name: "RTX 2080 Super",
+        color: 0x60a5fa,
+        specs: {
+            memory: "8GB GDDR6",
+            releaseDate: "July 23, 2019",
+            powerUsage: "250 W",
+            baseClock: "1,650 MHz"
+        }
+    },
+    {
+        name: "RTX 2080 Ti",
+        color: 0x60a5fa,
+        specs: {
+            memory: "11GB GDDR6",
+            releaseDate: "September 20, 2018",
+            powerUsage: "250 W",
+            baseClock: "1,350 MHz"
         }
     },
     // RTX 4090 models
@@ -114,7 +174,7 @@ function initMainView() {
 }
 
 function init() {
-    // Initialize main models (2060 and 4090)
+    // Initialize main models (2060, 2060 Super, and 4090)
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x374151);
     scenes.push(scene);
@@ -142,7 +202,7 @@ function init() {
 
     const geometry = new THREE.BoxGeometry(2, 1, 3);
     const material = new THREE.MeshPhongMaterial({ 
-        color: 0x60a5fa,  // آبی برای فوندرز
+        color: 0x60a5fa,
         specular: 0x050505,
         shininess: 100
     });
@@ -152,7 +212,248 @@ function init() {
     scene.add(model);
     models.push(model);
 
-    // RTX 4090 با همان رنگ‌های مشخص شده
+    // RTX 2060 Super
+    const sceneSuper = new THREE.Scene();
+    sceneSuper.background = new THREE.Color(0x374151);
+    scenes.push(sceneSuper);
+
+    const cameraSuper = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    cameraSuper.position.z = 5;
+    cameras.push(cameraSuper);
+
+    const rendererSuper = new THREE.WebGLRenderer({ antialias: true });
+    rendererSuper.setSize(250, 250);
+    document.getElementById('model-container-2060-super').appendChild(rendererSuper.domElement);
+    renderers.push(rendererSuper);
+
+    const ambientLightSuper = new THREE.AmbientLight(0xffffff, 0.7);
+    sceneSuper.add(ambientLightSuper);
+    const directionalLightSuper = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLightSuper.position.set(5, 5, 5);
+    sceneSuper.add(directionalLightSuper);
+
+    const controlSuper = new THREE.OrbitControls(cameraSuper, rendererSuper.domElement);
+    controlSuper.enableDamping = true;
+    controlSuper.dampingFactor = 0.05;
+    controls.push(controlSuper);
+
+    const modelSuper = new THREE.Mesh(geometry, material);
+    modelSuper.rotation.x = 0.3;
+    modelSuper.rotation.y = -0.5;
+    sceneSuper.add(modelSuper);
+    models.push(modelSuper);
+
+    // RTX 2070
+    const scene2070 = new THREE.Scene();
+    scene2070.background = new THREE.Color(0x374151);
+    scenes.push(scene2070);
+
+    const camera2070 = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    camera2070.position.z = 5;
+    cameras.push(camera2070);
+
+    const renderer2070 = new THREE.WebGLRenderer({ antialias: true });
+    renderer2070.setSize(250, 250);
+    document.getElementById('model-container-2070').appendChild(renderer2070.domElement);
+    renderers.push(renderer2070);
+
+    const ambientLight2070 = new THREE.AmbientLight(0xffffff, 0.7);
+    scene2070.add(ambientLight2070);
+    const directionalLight2070 = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight2070.position.set(5, 5, 5);
+    scene2070.add(directionalLight2070);
+
+    const control2070 = new THREE.OrbitControls(camera2070, renderer2070.domElement);
+    control2070.enableDamping = true;
+    control2070.dampingFactor = 0.05;
+    controls.push(control2070);
+
+    const model2070 = new THREE.Mesh(geometry, material);
+    model2070.rotation.x = 0.3;
+    model2070.rotation.y = -0.5;
+    scene2070.add(model2070);
+    models.push(model2070);
+
+    // RTX 2070 Super
+    const scene2070Super = new THREE.Scene();
+    scene2070Super.background = new THREE.Color(0x374151);
+    scenes.push(scene2070Super);
+
+    const camera2070Super = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    camera2070Super.position.z = 5;
+    cameras.push(camera2070Super);
+
+    const renderer2070Super = new THREE.WebGLRenderer({ antialias: true });
+    renderer2070Super.setSize(250, 250);
+    document.getElementById('model-container-2070-super').appendChild(renderer2070Super.domElement);
+    renderers.push(renderer2070Super);
+
+    const ambientLight2070Super = new THREE.AmbientLight(0xffffff, 0.7);
+    scene2070Super.add(ambientLight2070Super);
+    const directionalLight2070Super = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight2070Super.position.set(5, 5, 5);
+    scene2070Super.add(directionalLight2070Super);
+
+    const control2070Super = new THREE.OrbitControls(camera2070Super, renderer2070Super.domElement);
+    control2070Super.enableDamping = true;
+    control2070Super.dampingFactor = 0.05;
+    controls.push(control2070Super);
+
+    const model2070Super = new THREE.Mesh(geometry, material);
+    model2070Super.rotation.x = 0.3;
+    model2070Super.rotation.y = -0.5;
+    scene2070Super.add(model2070Super);
+    models.push(model2070Super);
+
+    // RTX 2080
+    const scene2080 = new THREE.Scene();
+    scene2080.background = new THREE.Color(0x374151);
+    scenes.push(scene2080);
+
+    const camera2080 = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    camera2080.position.z = 5;
+    cameras.push(camera2080);
+
+    const renderer2080 = new THREE.WebGLRenderer({ antialias: true });
+    renderer2080.setSize(250, 250);
+    document.getElementById('model-container-2080').appendChild(renderer2080.domElement);
+    renderers.push(renderer2080);
+
+    const ambientLight2080 = new THREE.AmbientLight(0xffffff, 0.7);
+    scene2080.add(ambientLight2080);
+    const directionalLight2080 = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight2080.position.set(5, 5, 5);
+    scene2080.add(directionalLight2080);
+
+    const control2080 = new THREE.OrbitControls(camera2080, renderer2080.domElement);
+    control2080.enableDamping = true;
+    control2080.dampingFactor = 0.05;
+    controls.push(control2080);
+
+    const model2080 = new THREE.Mesh(geometry, material);
+    model2080.rotation.x = 0.3;
+    model2080.rotation.y = -0.5;
+    scene2080.add(model2080);
+    models.push(model2080);
+
+    // Add hover effect for 2070
+    const modelWrapper2070 = document.querySelector('#model-container-2070').parentElement;
+    modelWrapper2070.addEventListener('mouseenter', () => {
+        isRotating[2] = true;  // index 2 for 2070
+    });
+    modelWrapper2070.addEventListener('mouseleave', () => {
+        isRotating[2] = false;
+        model2070.rotation.x = 0.3;
+        model2070.rotation.y = -0.5;
+    });
+
+    // RTX 2070 Super
+    const modelWrapper2070Super = document.querySelector('#model-container-2070-super').parentElement;
+    modelWrapper2070Super.addEventListener('mouseenter', () => {
+        isRotating[3] = true;  // index 3 for 2070 Super
+    });
+    modelWrapper2070Super.addEventListener('mouseleave', () => {
+        isRotating[3] = false;
+        model2070Super.rotation.x = 0.3;
+        model2070Super.rotation.y = -0.5;
+    });
+
+    // RTX 2080
+    const modelWrapper2080 = document.querySelector('#model-container-2080').parentElement;
+    modelWrapper2080.addEventListener('mouseenter', () => {
+        isRotating[4] = true;  // index 4 for 2080
+    });
+    modelWrapper2080.addEventListener('mouseleave', () => {
+        isRotating[4] = false;
+        model2080.rotation.x = 0.3;
+        model2080.rotation.y = -0.5;
+    });
+
+    // RTX 2080 Super
+    const scene2080Super = new THREE.Scene();
+    scene2080Super.background = new THREE.Color(0x374151);
+    scenes.push(scene2080Super);
+
+    const camera2080Super = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    camera2080Super.position.z = 5;
+    cameras.push(camera2080Super);
+
+    const renderer2080Super = new THREE.WebGLRenderer({ antialias: true });
+    renderer2080Super.setSize(250, 250);
+    document.getElementById('model-container-2080-super').appendChild(renderer2080Super.domElement);
+    renderers.push(renderer2080Super);
+
+    const ambientLight2080Super = new THREE.AmbientLight(0xffffff, 0.7);
+    scene2080Super.add(ambientLight2080Super);
+    const directionalLight2080Super = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight2080Super.position.set(5, 5, 5);
+    scene2080Super.add(directionalLight2080Super);
+
+    const control2080Super = new THREE.OrbitControls(camera2080Super, renderer2080Super.domElement);
+    control2080Super.enableDamping = true;
+    control2080Super.dampingFactor = 0.05;
+    controls.push(control2080Super);
+
+    const model2080Super = new THREE.Mesh(geometry, material);
+    model2080Super.rotation.x = 0.3;
+    model2080Super.rotation.y = -0.5;
+    scene2080Super.add(model2080Super);
+    models.push(model2080Super);
+
+    // Add hover effect for 2080 Super
+    const modelWrapper2080Super = document.querySelector('#model-container-2080-super').parentElement;
+    modelWrapper2080Super.addEventListener('mouseenter', () => {
+        isRotating[5] = true;  // index 5 for 2080 Super
+    });
+    modelWrapper2080Super.addEventListener('mouseleave', () => {
+        isRotating[5] = false;
+        model2080Super.rotation.x = 0.3;
+        model2080Super.rotation.y = -0.5;
+    });
+
+    // RTX 2080 Ti
+    const scene2080Ti = new THREE.Scene();
+    scene2080Ti.background = new THREE.Color(0x374151);
+    scenes.push(scene2080Ti);
+
+    const camera2080Ti = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    camera2080Ti.position.z = 5;
+    cameras.push(camera2080Ti);
+
+    const renderer2080Ti = new THREE.WebGLRenderer({ antialias: true });
+    renderer2080Ti.setSize(250, 250);
+    document.getElementById('model-container-2080-ti').appendChild(renderer2080Ti.domElement);
+    renderers.push(renderer2080Ti);
+
+    const ambientLight2080Ti = new THREE.AmbientLight(0xffffff, 0.7);
+    scene2080Ti.add(ambientLight2080Ti);
+    const directionalLight2080Ti = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight2080Ti.position.set(5, 5, 5);
+    scene2080Ti.add(directionalLight2080Ti);
+
+    const control2080Ti = new THREE.OrbitControls(camera2080Ti, renderer2080Ti.domElement);
+    control2080Ti.enableDamping = true;
+    control2080Ti.dampingFactor = 0.05;
+    controls.push(control2080Ti);
+
+    const model2080Ti = new THREE.Mesh(geometry, material);
+    model2080Ti.rotation.x = 0.3;
+    model2080Ti.rotation.y = -0.5;
+    scene2080Ti.add(model2080Ti);
+    models.push(model2080Ti);
+
+    // Add hover effect for 2080 Ti
+    const modelWrapper2080Ti = document.querySelector('#model-container-2080-ti').parentElement;
+    modelWrapper2080Ti.addEventListener('mouseenter', () => {
+        isRotating[6] = true;  // index 6 for 2080 Ti
+    });
+    modelWrapper2080Ti.addEventListener('mouseleave', () => {
+        isRotating[6] = false;
+        model2080Ti.rotation.x = 0.3;
+        model2080Ti.rotation.y = -0.5;
+    });
+
+    // RTX 4090
     const scene4090 = new THREE.Scene();
     scene4090.background = new THREE.Color(0x374151);
     scenes.push(scene4090);
@@ -163,7 +464,7 @@ function init() {
 
     const renderer4090 = new THREE.WebGLRenderer({ antialias: true });
     renderer4090.setSize(250, 250);
-    document.getElementById('model-container').appendChild(renderer4090.domElement);
+    document.getElementById('model-container-4090').appendChild(renderer4090.domElement);
     renderers.push(renderer4090);
 
     const ambientLight4090 = new THREE.AmbientLight(0xffffff, 0.7);
@@ -182,6 +483,17 @@ function init() {
     model4090.rotation.y = -0.5;
     scene4090.add(model4090);
     models.push(model4090);
+
+    // Add hover effect for 4090
+    const modelWrapper4090 = document.querySelector('#model-container-4090').parentElement;
+    modelWrapper4090.addEventListener('mouseenter', () => {
+        isRotating[7] = true;  // index 7 for 4090
+    });
+    modelWrapper4090.addEventListener('mouseleave', () => {
+        isRotating[7] = false;
+        model4090.rotation.x = 0.3;
+        model4090.rotation.y = -0.5;
+    });
 
     initFullscreenView();
     animate();
@@ -232,10 +544,10 @@ function updateFullscreenModel(index, isRTX2060 = false) {
     }
 
     const colors = [0x60a5fa, 0xff4444, 0x44ff44]; // آبی، قرمز، سبز
-    const modelIndex = isRTX2060 ? 0 : index + 3; // برای 2060 همیشه از مدل اول استفاده میکنیم
+    const modelIndex = isRTX2060 ? 0 : index + 3;
     const geometry = new THREE.BoxGeometry(2, 1, 3);
     const material = new THREE.MeshPhongMaterial({ 
-        color: isRTX2060 ? 0x60a5fa : colors[index], // 2060 همیشه آبی باشه
+        color: isRTX2060 ? 0x60a5fa : colors[index],
         specular: 0x050505,
         shininess: 100
     });
@@ -248,7 +560,18 @@ function updateFullscreenModel(index, isRTX2060 = false) {
     const specsTitle = document.querySelector('.specs-title');
     const specsContent = document.querySelector('.specs-content');
     if (specsTitle && specsContent) {
-        specsTitle.textContent = GPU_MODELS[modelIndex].name;
+        let title;
+        if (modelIndex === 0) {
+            title = "RTX 2060 Specifications";
+        } else if (modelIndex === 3) {
+            title = "RTX 2060 Super Specifications";
+        } else if (modelIndex === 4) {
+            title = "RTX 2070 Specifications";
+        }
+        // و به همین ترتیب برای بقیه مدل‌ها
+        
+        specsTitle.textContent = title;
+        
         specsContent.innerHTML = `
             <div class="spec-item">
                 <span class="spec-label">Memory:</span>
