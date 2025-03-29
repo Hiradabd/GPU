@@ -17,17 +17,10 @@ body {
     width: 100%;
     max-width: 320px;
     padding: 20px;
-    position: fixed;
 }
 
 form {
     display: none;
-    width: 100%;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    padding: 0 20px;
 }
 
 form.active {
@@ -67,7 +60,6 @@ form.active {
     font-weight: 600;
     font-size: 1.1rem;
     color: #fff;
-    width: 100%;
 }
 
 .input-field input::placeholder {
