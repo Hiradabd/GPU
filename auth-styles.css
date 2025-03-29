@@ -470,6 +470,15 @@ form.sign-in-form {
     .container.sign-up-mode .left-panel {
         transform: translateX(0);
     }
+
+    .image {
+        display: none;
+    }
+    
+    .panel .content {
+        width: 100%;
+        padding: 2rem;
+    }
 }
 
 /* برای تلفن‌های خیلی کوچک */
