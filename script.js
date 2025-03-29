@@ -561,14 +561,22 @@ function updateFullscreenModel(index, isRTX2060 = false) {
     const specsContent = document.querySelector('.specs-content');
     if (specsTitle && specsContent) {
         let title;
-        if (modelIndex === 0) {
-            title = "RTX 2060 Specifications";
-        } else if (modelIndex === 3) {
-            title = "RTX 2060 Super Specifications";
-        } else if (modelIndex === 4) {
-            title = "RTX 2070 Specifications";
-        }
-        // و به همین ترتیب برای بقیه مدل‌ها
+        // RTX 2060 models
+        if (modelIndex === 0) title = "RTX 2060 Specifications";
+        else if (modelIndex === 1) title = "RTX 2060 ROG STRIX OC Specifications";
+        else if (modelIndex === 2) title = "RTX 2060 SUPRIM X Specifications";
+        else if (modelIndex === 3) title = "RTX 2060 Super Specifications";
+        // RTX 2070 models
+        else if (modelIndex === 4) title = "RTX 2070 Specifications";
+        else if (modelIndex === 5) title = "RTX 2070 Super Specifications";
+        // RTX 2080 models
+        else if (modelIndex === 6) title = "RTX 2080 Specifications";
+        else if (modelIndex === 7) title = "RTX 2080 Super Specifications";
+        else if (modelIndex === 8) title = "RTX 2080 Ti Specifications";
+        // RTX 4090 models
+        else if (modelIndex === 9) title = "RTX 4090 Founders Edition Specifications";
+        else if (modelIndex === 10) title = "RTX 4090 ROG STRIX OC Specifications";
+        else if (modelIndex === 11) title = "RTX 4090 SUPRIM X Specifications";
         
         specsTitle.textContent = title;
         
