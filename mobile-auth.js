@@ -1,15 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const signInForm = document.querySelector('.sign-in-form');
-    const signUpForm = document.querySelector('.sign-up-form');
+    const formsContainer = document.querySelector('.forms-container');
     const toggleButtons = document.querySelectorAll('.toggle-form');
     const passwordToggles = document.querySelectorAll('.password-toggle');
 
-    // Toggle between forms
+    // Toggle between forms with slide animation
     toggleButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            signInForm.classList.toggle('active');
-            signUpForm.classList.toggle('active');
+            formsContainer.classList.toggle('sign-up-active');
         });
     });
 
