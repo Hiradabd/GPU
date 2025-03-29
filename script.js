@@ -813,4 +813,24 @@ function initMainViews2060() {
         scene.add(model);
         models.push(model);
     });
-} 
+}
+
+// اضافه کردن این توابع به script.js
+function logout() {
+    localStorage.removeItem('currentUser');
+    window.location.href = 'index.html';
+}
+
+// نمایش نام کاربر
+window.addEventListener('load', () => {
+    const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser) {
+        window.location.href = 'index.html';
+        return;
+    }
+    
+    const usernameDisplay = document.getElementById('username-display');
+    if (usernameDisplay) {
+        usernameDisplay.textContent = `Welcome, ${currentUser}!`;
+    }
+}); 
