@@ -392,72 +392,94 @@ form.sign-in-form {
     }
 }
 
+/* فقط برای موبایل، بدون تغییر در دسکتاپ */
 @media (max-width: 570px) {
-    form {
-        padding: 0 1.5rem;
-    }
-
-    .image {
-        display: none;
-    }
-    
-    .panel .content {
-        padding: 0.5rem 1rem;
-    }
-
-    .panel {
-        padding: 1.5rem 1.2rem;
-    }
-    
     .container {
-        padding: 1.5rem;
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        overflow: hidden;
     }
 
-    .container:before {
-        bottom: 72%;
-        left: 50%;
+    .forms-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
     }
 
-    .container.sign-up-mode:before {
-        bottom: 28%;
+    .signin-signup {
+        position: absolute;
+        top: 50%;
         left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        display: grid;
+        grid-template-columns: 1fr;
+        z-index: 5;
+    }
+
+    form {
+        padding: 0 1rem;
+        width: 100%;
+        max-width: 100%;
     }
 
     .input-field {
-        max-width: 290px;
+        width: 100%;
+        max-width: 100%;
     }
 
-    .social-media {
-        flex-wrap: wrap;
+    .panels-container {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .panel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         justify-content: center;
-        gap: 8px;
+        width: 100%;
+        padding: 1rem;
+        text-align: center;
     }
 
-    .title {
-        font-size: 1.8rem;
+    .left-panel, 
+    .right-panel {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 3rem;
     }
 
-    .social-text {
-        font-size: 0.9rem;
+    .right-panel {
+        transform: translateX(0);
+    }
+
+    .container.sign-up-mode .signin-signup {
+        transform: translate(-50%, -150%);
+    }
+
+    .container.sign-up-mode .right-panel {
+        transform: translateX(0);
+    }
+
+    .container.sign-up-mode .left-panel {
+        transform: translateX(0);
     }
 }
 
 /* برای تلفن‌های خیلی کوچک */
-@media (max-width: 350px) {
-    .input-field {
-        max-width: 250px;
-    }
-    
-    .btn {
-        width: 120px;
-        height: 45px;
-        font-size: 0.8rem;
+@media (max-width: 380px) {
+    form {
+        padding: 0 0.8rem;
     }
 
-    .social-icon {
-        height: 40px;
-        width: 40px;
-        font-size: 1rem;
+    .input-field {
+        padding: 0 0.3rem;
     }
 }
 
