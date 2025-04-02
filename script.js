@@ -544,7 +544,6 @@ function updateFullscreenModel(index, isRTX2060 = false) {
     }
 
     const colors = [0x60a5fa, 0xff4444, 0x44ff44]; // آبی، قرمز، سبز
-    const modelIndex = isRTX2060 ? 0 : index + 3;
     const geometry = new THREE.BoxGeometry(2, 1, 3);
     const material = new THREE.MeshPhongMaterial({ 
         color: isRTX2060 ? 0x60a5fa : colors[index],
@@ -561,43 +560,87 @@ function updateFullscreenModel(index, isRTX2060 = false) {
     const specsContent = document.querySelector('.specs-content');
     if (specsTitle && specsContent) {
         let title;
-        // RTX 2060 models
-        if (modelIndex === 0) title = "RTX 2060 Specifications";
-        else if (modelIndex === 1) title = "RTX 2060 ROG STRIX OC Specifications";
-        else if (modelIndex === 2) title = "RTX 2060 SUPRIM X Specifications";
-        else if (modelIndex === 3) title = "RTX 2060 Super Specifications";
-        // RTX 2070 models
-        else if (modelIndex === 4) title = "RTX 2070 Specifications";
-        else if (modelIndex === 5) title = "RTX 2070 Super Specifications";
-        // RTX 2080 models
-        else if (modelIndex === 6) title = "RTX 2080 Specifications";
-        else if (modelIndex === 7) title = "RTX 2080 Super Specifications";
-        else if (modelIndex === 8) title = "RTX 2080 Ti Specifications";
-        // RTX 4090 models
-        else if (modelIndex === 9) title = "RTX 4090 Founders Edition Specifications";
-        else if (modelIndex === 10) title = "RTX 4090 ROG STRIX OC Specifications";
-        else if (modelIndex === 11) title = "RTX 4090 SUPRIM X Specifications";
+        if (isRTX2060) {
+            // برای مدل‌های سری 20
+            switch(index) {
+                case 0:
+                    title = "RTX 2060 Specifications";
+                    break;
+                case 1:
+                    title = "RTX 2060 Super Specifications";
+                    break;
+                case 2:
+                    title = "RTX 2070 Specifications";
+                    break;
+                case 3:
+                    title = "RTX 2070 Super Specifications";
+                    break;
+                case 4:
+                    title = "RTX 2080 Specifications";
+                    break;
+                case 5:
+                    title = "RTX 2080 Super Specifications";
+                    break;
+                case 6:
+                    title = "RTX 2080 Ti Specifications";
+                    break;
+                default:
+                    title = "RTX 2060 Specifications";
+            }
+            specsContent.innerHTML = `
+                <div class="spec-item">
+                    <span class="spec-label">Memory:</span>
+                    <span class="spec-value">${GPU_MODELS[index].specs.memory}</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Release Date:</span>
+                    <span class="spec-value">${GPU_MODELS[index].specs.releaseDate}</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Power Usage (TDP):</span>
+                    <span class="spec-value">${GPU_MODELS[index].specs.powerUsage}</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Base Clock:</span>
+                    <span class="spec-value">${GPU_MODELS[index].specs.baseClock}</span>
+                </div>
+            `;
+        } else {
+            // برای مدل‌های RTX 4090
+            switch(index) {
+                case 0:
+                    title = "RTX 4090 Founders Edition Specifications";
+                    break;
+                case 1:
+                    title = "RTX 4090 ROG STRIX OC Specifications";
+                    break;
+                case 2:
+                    title = "RTX 4090 SUPRIM X Specifications";
+                    break;
+                default:
+                    title = "RTX 4090 Specifications";
+            }
+            specsContent.innerHTML = `
+                <div class="spec-item">
+                    <span class="spec-label">Memory:</span>
+                    <span class="spec-value">${GPU_MODELS[index + 9].specs.memory}</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Release Date:</span>
+                    <span class="spec-value">${GPU_MODELS[index + 9].specs.releaseDate}</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Power Usage (TDP):</span>
+                    <span class="spec-value">${GPU_MODELS[index + 9].specs.powerUsage}</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-label">Base Clock:</span>
+                    <span class="spec-value">${GPU_MODELS[index + 9].specs.baseClock}</span>
+                </div>
+            `;
+        }
         
         specsTitle.textContent = title;
-        
-        specsContent.innerHTML = `
-            <div class="spec-item">
-                <span class="spec-label">Memory:</span>
-                <span class="spec-value">${GPU_MODELS[modelIndex].specs.memory}</span>
-            </div>
-            <div class="spec-item">
-                <span class="spec-label">Release Date:</span>
-                <span class="spec-value">${GPU_MODELS[modelIndex].specs.releaseDate}</span>
-            </div>
-            <div class="spec-item">
-                <span class="spec-label">Power Usage (TDP):</span>
-                <span class="spec-value">${GPU_MODELS[modelIndex].specs.powerUsage}</span>
-            </div>
-            <div class="spec-item">
-                <span class="spec-label">Base Clock:</span>
-                <span class="spec-value">${GPU_MODELS[modelIndex].specs.baseClock}</span>
-            </div>
-        `;
     }
 }
 
