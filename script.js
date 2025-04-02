@@ -293,7 +293,6 @@ function init() {
     // RTX 2060 - جایگزینی مکعب با مدل Sketchfab
     const container2060 = document.getElementById('model-container-2060');
     if (container2060) {
-        // حذف renderer قبلی
         container2060.innerHTML = `
             <iframe
                 title="GeForce RTX 2060 Founders Edition"
@@ -347,215 +346,145 @@ function init() {
     controls.push(null);
     models.push(null);
 
-    // RTX 2070
-    const scene2070 = new THREE.Scene();
-    scene2070.background = new THREE.Color(0x374151);
-    scenes.push(scene2070);
+    // RTX 2070 - جایگزینی مکعب با مدل Sketchfab
+    const container2070 = document.getElementById('model-container-2070');
+    if (container2070) {
+        container2070.innerHTML = `
+            <iframe
+                title="GeForce RTX 2070 Founders Edition"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                xr-spatial-tracking
+                execution-while-out-of-viewport
+                execution-while-not-rendered
+                web-share
+                src="https://sketchfab.com/models/13c2a317acd6486fa521624c31649788/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0"
+                style="width: 100%; height: 250px; border-radius: 10px;"
+            ></iframe>
+        `;
+    }
 
-    const camera2070 = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
-    camera2070.position.z = 5;
-    cameras.push(camera2070);
+    // حذف کد مربوط به scene و model برای RTX 2070 چون دیگر نیازی نیست
+    scenes.push(null);
+    cameras.push(null);
+    renderers.push(null);
+    controls.push(null);
+    models.push(null);
 
-    const renderer2070 = new THREE.WebGLRenderer({ antialias: true });
-    renderer2070.setSize(250, 250);
-    document.getElementById('model-container-2070').appendChild(renderer2070.domElement);
-    renderers.push(renderer2070);
+    // RTX 2070 Super - جایگزینی مکعب با مدل Sketchfab
+    const container2070Super = document.getElementById('model-container-2070-super');
+    if (container2070Super) {
+        container2070Super.innerHTML = `
+            <iframe
+                title="GeForce RTX 2070 Super Founders Edition"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                xr-spatial-tracking
+                execution-while-out-of-viewport
+                execution-while-not-rendered
+                web-share
+                src="https://sketchfab.com/models/3b892a8e95204ee99b8ce13352925b21/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0"
+                style="width: 100%; height: 250px; border-radius: 10px;"
+            ></iframe>
+        `;
+    }
 
-    const ambientLight2070 = new THREE.AmbientLight(0xffffff, 0.7);
-    scene2070.add(ambientLight2070);
-    const directionalLight2070 = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight2070.position.set(5, 5, 5);
-    scene2070.add(directionalLight2070);
+    // حذف کد مربوط به scene و model برای RTX 2070 Super چون دیگر نیازی نیست
+    scenes.push(null);
+    cameras.push(null);
+    renderers.push(null);
+    controls.push(null);
+    models.push(null);
 
-    const control2070 = new THREE.OrbitControls(camera2070, renderer2070.domElement);
-    control2070.enableDamping = true;
-    control2070.dampingFactor = 0.05;
-    controls.push(control2070);
+    // RTX 2080 - جایگزینی مکعب با مدل Sketchfab
+    const container2080 = document.getElementById('model-container-2080');
+    if (container2080) {
+        container2080.innerHTML = `
+            <iframe
+                title="GeForce RTX 2080 Founders Edition"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                xr-spatial-tracking
+                execution-while-out-of-viewport
+                execution-while-not-rendered
+                web-share
+                src="https://sketchfab.com/models/8a03a4f1d0734d479e1fc00ed540d28e/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0"
+                style="width: 100%; height: 250px; border-radius: 10px;"
+            ></iframe>
+        `;
+    }
 
-    const model2070 = new THREE.Mesh(geometry, material);
-    model2070.rotation.x = 0.3;
-    model2070.rotation.y = -0.5;
-    scene2070.add(model2070);
-    models.push(model2070);
+    // حذف کد مربوط به scene و model برای RTX 2080 چون دیگر نیازی نیست
+    scenes.push(null);
+    cameras.push(null);
+    renderers.push(null);
+    controls.push(null);
+    models.push(null);
 
-    // RTX 2070 Super
-    const scene2070Super = new THREE.Scene();
-    scene2070Super.background = new THREE.Color(0x374151);
-    scenes.push(scene2070Super);
+    // RTX 2080 Super - جایگزینی مکعب با مدل Sketchfab
+    const container2080Super = document.getElementById('model-container-2080-super');
+    if (container2080Super) {
+        container2080Super.innerHTML = `
+            <iframe
+                title="GeForce RTX 2080 Super Founders Edition"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                xr-spatial-tracking
+                execution-while-out-of-viewport
+                execution-while-not-rendered
+                web-share
+                src="https://sketchfab.com/models/84e5415a5cb54409b7b0068037dcd884/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0"
+                style="width: 100%; height: 250px; border-radius: 10px;"
+            ></iframe>
+        `;
+    }
 
-    const camera2070Super = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
-    camera2070Super.position.z = 5;
-    cameras.push(camera2070Super);
+    // حذف کد مربوط به scene و model برای RTX 2080 Super چون دیگر نیازی نیست
+    scenes.push(null);
+    cameras.push(null);
+    renderers.push(null);
+    controls.push(null);
+    models.push(null);
 
-    const renderer2070Super = new THREE.WebGLRenderer({ antialias: true });
-    renderer2070Super.setSize(250, 250);
-    document.getElementById('model-container-2070-super').appendChild(renderer2070Super.domElement);
-    renderers.push(renderer2070Super);
+    // RTX 2080 Ti - جایگزینی مکعب با مدل Sketchfab
+    const container2080Ti = document.getElementById('model-container-2080-ti');
+    if (container2080Ti) {
+        container2080Ti.innerHTML = `
+            <iframe
+                title="GeForce RTX 2080 Ti Founders Edition"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                xr-spatial-tracking
+                execution-while-out-of-viewport
+                execution-while-not-rendered
+                web-share
+                src="https://sketchfab.com/models/fcfffc0cdb784c77b226d4e280bc33b0/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0"
+                style="width: 100%; height: 250px; border-radius: 10px;"
+            ></iframe>
+        `;
+    }
 
-    const ambientLight2070Super = new THREE.AmbientLight(0xffffff, 0.7);
-    scene2070Super.add(ambientLight2070Super);
-    const directionalLight2070Super = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight2070Super.position.set(5, 5, 5);
-    scene2070Super.add(directionalLight2070Super);
-
-    const control2070Super = new THREE.OrbitControls(camera2070Super, renderer2070Super.domElement);
-    control2070Super.enableDamping = true;
-    control2070Super.dampingFactor = 0.05;
-    controls.push(control2070Super);
-
-    const model2070Super = new THREE.Mesh(geometry, material);
-    model2070Super.rotation.x = 0.3;
-    model2070Super.rotation.y = -0.5;
-    scene2070Super.add(model2070Super);
-    models.push(model2070Super);
-
-    // RTX 2080
-    const scene2080 = new THREE.Scene();
-    scene2080.background = new THREE.Color(0x374151);
-    scenes.push(scene2080);
-
-    const camera2080 = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
-    camera2080.position.z = 5;
-    cameras.push(camera2080);
-
-    const renderer2080 = new THREE.WebGLRenderer({ antialias: true });
-    renderer2080.setSize(250, 250);
-    document.getElementById('model-container-2080').appendChild(renderer2080.domElement);
-    renderers.push(renderer2080);
-
-    const ambientLight2080 = new THREE.AmbientLight(0xffffff, 0.7);
-    scene2080.add(ambientLight2080);
-    const directionalLight2080 = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight2080.position.set(5, 5, 5);
-    scene2080.add(directionalLight2080);
-
-    const control2080 = new THREE.OrbitControls(camera2080, renderer2080.domElement);
-    control2080.enableDamping = true;
-    control2080.dampingFactor = 0.05;
-    controls.push(control2080);
-
-    const model2080 = new THREE.Mesh(geometry, material);
-    model2080.rotation.x = 0.3;
-    model2080.rotation.y = -0.5;
-    scene2080.add(model2080);
-    models.push(model2080);
-
-    // Add hover effect for 2070
-    const modelWrapper2070 = document.querySelector('#model-container-2070').parentElement;
-    modelWrapper2070.addEventListener('mouseenter', () => {
-        isRotating[2] = true;  // index 2 for 2070
-    });
-    modelWrapper2070.addEventListener('mouseleave', () => {
-        isRotating[2] = false;
-        model2070.rotation.x = 0.3;
-        model2070.rotation.y = -0.5;
-    });
-
-    // RTX 2070 Super
-    const modelWrapper2070Super = document.querySelector('#model-container-2070-super').parentElement;
-    modelWrapper2070Super.addEventListener('mouseenter', () => {
-        isRotating[3] = true;  // index 3 for 2070 Super
-    });
-    modelWrapper2070Super.addEventListener('mouseleave', () => {
-        isRotating[3] = false;
-        model2070Super.rotation.x = 0.3;
-        model2070Super.rotation.y = -0.5;
-    });
-
-    // RTX 2080
-    const modelWrapper2080 = document.querySelector('#model-container-2080').parentElement;
-    modelWrapper2080.addEventListener('mouseenter', () => {
-        isRotating[4] = true;  // index 4 for 2080
-    });
-    modelWrapper2080.addEventListener('mouseleave', () => {
-        isRotating[4] = false;
-        model2080.rotation.x = 0.3;
-        model2080.rotation.y = -0.5;
-    });
-
-    // RTX 2080 Super
-    const scene2080Super = new THREE.Scene();
-    scene2080Super.background = new THREE.Color(0x374151);
-    scenes.push(scene2080Super);
-
-    const camera2080Super = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
-    camera2080Super.position.z = 5;
-    cameras.push(camera2080Super);
-
-    const renderer2080Super = new THREE.WebGLRenderer({ antialias: true });
-    renderer2080Super.setSize(250, 250);
-    document.getElementById('model-container-2080-super').appendChild(renderer2080Super.domElement);
-    renderers.push(renderer2080Super);
-
-    const ambientLight2080Super = new THREE.AmbientLight(0xffffff, 0.7);
-    scene2080Super.add(ambientLight2080Super);
-    const directionalLight2080Super = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight2080Super.position.set(5, 5, 5);
-    scene2080Super.add(directionalLight2080Super);
-
-    const control2080Super = new THREE.OrbitControls(camera2080Super, renderer2080Super.domElement);
-    control2080Super.enableDamping = true;
-    control2080Super.dampingFactor = 0.05;
-    controls.push(control2080Super);
-
-    const model2080Super = new THREE.Mesh(geometry, material);
-    model2080Super.rotation.x = 0.3;
-    model2080Super.rotation.y = -0.5;
-    scene2080Super.add(model2080Super);
-    models.push(model2080Super);
-
-    // Add hover effect for 2080 Super
-    const modelWrapper2080Super = document.querySelector('#model-container-2080-super').parentElement;
-    modelWrapper2080Super.addEventListener('mouseenter', () => {
-        isRotating[5] = true;  // index 5 for 2080 Super
-    });
-    modelWrapper2080Super.addEventListener('mouseleave', () => {
-        isRotating[5] = false;
-        model2080Super.rotation.x = 0.3;
-        model2080Super.rotation.y = -0.5;
-    });
-
-    // RTX 2080 Ti
-    const scene2080Ti = new THREE.Scene();
-    scene2080Ti.background = new THREE.Color(0x374151);
-    scenes.push(scene2080Ti);
-
-    const camera2080Ti = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
-    camera2080Ti.position.z = 5;
-    cameras.push(camera2080Ti);
-
-    const renderer2080Ti = new THREE.WebGLRenderer({ antialias: true });
-    renderer2080Ti.setSize(250, 250);
-    document.getElementById('model-container-2080-ti').appendChild(renderer2080Ti.domElement);
-    renderers.push(renderer2080Ti);
-
-    const ambientLight2080Ti = new THREE.AmbientLight(0xffffff, 0.7);
-    scene2080Ti.add(ambientLight2080Ti);
-    const directionalLight2080Ti = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight2080Ti.position.set(5, 5, 5);
-    scene2080Ti.add(directionalLight2080Ti);
-
-    const control2080Ti = new THREE.OrbitControls(camera2080Ti, renderer2080Ti.domElement);
-    control2080Ti.enableDamping = true;
-    control2080Ti.dampingFactor = 0.05;
-    controls.push(control2080Ti);
-
-    const model2080Ti = new THREE.Mesh(geometry, material);
-    model2080Ti.rotation.x = 0.3;
-    model2080Ti.rotation.y = -0.5;
-    scene2080Ti.add(model2080Ti);
-    models.push(model2080Ti);
-
-    // Add hover effect for 2080 Ti
-    const modelWrapper2080Ti = document.querySelector('#model-container-2080-ti').parentElement;
-    modelWrapper2080Ti.addEventListener('mouseenter', () => {
-        isRotating[6] = true;  // index 6 for 2080 Ti
-    });
-    modelWrapper2080Ti.addEventListener('mouseleave', () => {
-        isRotating[6] = false;
-        model2080Ti.rotation.x = 0.3;
-        model2080Ti.rotation.y = -0.5;
-    });
+    // حذف کد مربوط به scene و model برای RTX 2080 Ti چون دیگر نیازی نیست
+    scenes.push(null);
+    cameras.push(null);
+    renderers.push(null);
+    controls.push(null);
+    models.push(null);
 
     // RTX 4090
     const scene4090 = new THREE.Scene();
@@ -1005,8 +934,8 @@ function setupHoverListeners() {
     });
     modelWrapper3070.addEventListener('mouseleave', () => {
         isRotating[11] = false;
-        models[11].rotation.x = 0.3;
-        models[11].rotation.y = -0.5;
+        model3070.rotation.x = 0.3;
+        model3070.rotation.y = -0.5;
     });
 
     // RTX 3070 Ti
@@ -1016,8 +945,8 @@ function setupHoverListeners() {
     });
     modelWrapper3070Ti.addEventListener('mouseleave', () => {
         isRotating[12] = false;
-        models[12].rotation.x = 0.3;
-        models[12].rotation.y = -0.5;
+        model3070Ti.rotation.x = 0.3;
+        model3070Ti.rotation.y = -0.5;
     });
 
     // RTX 3080
@@ -1027,8 +956,8 @@ function setupHoverListeners() {
     });
     modelWrapper3080.addEventListener('mouseleave', () => {
         isRotating[13] = false;
-        models[13].rotation.x = 0.3;
-        models[13].rotation.y = -0.5;
+        model3080.rotation.x = 0.3;
+        model3080.rotation.y = -0.5;
     });
 
     // RTX 3080 Ti
@@ -1038,8 +967,8 @@ function setupHoverListeners() {
     });
     modelWrapper3080Ti.addEventListener('mouseleave', () => {
         isRotating[14] = false;
-        models[14].rotation.x = 0.3;
-        models[14].rotation.y = -0.5;
+        model3080Ti.rotation.x = 0.3;
+        model3080Ti.rotation.y = -0.5;
     });
 
     // RTX 3090
@@ -1049,8 +978,8 @@ function setupHoverListeners() {
     });
     modelWrapper3090.addEventListener('mouseleave', () => {
         isRotating[15] = false;
-        models[15].rotation.x = 0.3;
-        models[15].rotation.y = -0.5;
+        model3090.rotation.x = 0.3;
+        model3090.rotation.y = -0.5;
     });
 
     // RTX 3090 Ti
@@ -1060,8 +989,8 @@ function setupHoverListeners() {
     });
     modelWrapper3090Ti.addEventListener('mouseleave', () => {
         isRotating[16] = false;
-        models[16].rotation.x = 0.3;
-        models[16].rotation.y = -0.5;
+        model3090Ti.rotation.x = 0.3;
+        model3090Ti.rotation.y = -0.5;
     });
 }
 
@@ -1220,15 +1149,36 @@ function openFullView(index, isRTX2060 = false) {
     const fullscreenView = document.getElementById('fullscreen-view');
     const containerFull = document.getElementById('model-container-full');
     
-    if ((isRTX2060 && index === 0) || (isRTX2060 && index === 1)) { // اضافه کردن شرط برای 2060 Super
+    if ((isRTX2060 && index === 0) || (isRTX2060 && index === 1) || (isRTX2060 && index === 2) || (isRTX2060 && index === 3) || (isRTX2060 && index === 4) || (isRTX2060 && index === 5) || (isRTX2060 && index === 6)) {
         // نمایش مدل Sketchfab در حالت fullscreen
-        const modelUrl = index === 0 
-            ? "ce2ad74ed4254d79830f94ec966234c9"  // RTX 2060
-            : "effa97d28abc492698a5cc0a8a33a131"; // RTX 2060 Super
+        let modelUrl;
+        switch(index) {
+            case 0:
+                modelUrl = "ce2ad74ed4254d79830f94ec966234c9";  // RTX 2060
+                break;
+            case 1:
+                modelUrl = "effa97d28abc492698a5cc0a8a33a131";  // RTX 2060 Super
+                break;
+            case 2:
+                modelUrl = "13c2a317acd6486fa521624c31649788";  // RTX 2070
+                break;
+            case 3:
+                modelUrl = "3b892a8e95204ee99b8ce13352925b21";  // RTX 2070 Super
+                break;
+            case 4:
+                modelUrl = "8a03a4f1d0734d479e1fc00ed540d28e";  // RTX 2080
+                break;
+            case 5:
+                modelUrl = "84e5415a5cb54409b7b0068037dcd884";  // RTX 2080 Super
+                break;
+            case 6:
+                modelUrl = "fcfffc0cdb784c77b226d4e280bc33b0";  // RTX 2080 Ti
+                break;
+        }
             
         containerFull.innerHTML = `
             <iframe
-                title="GeForce RTX ${index === 0 ? '2060' : '2060 Super'} Founders Edition"
+                title="GeForce RTX ${index === 0 ? '2060' : index === 1 ? '2060 Super' : index === 2 ? '2070' : index === 3 ? '2070 Super' : index === 4 ? '2080' : '2080'} Founders Edition"
                 frameborder="0"
                 allowfullscreen
                 mozallowfullscreen="true"
