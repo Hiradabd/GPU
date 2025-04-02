@@ -1,6 +1,6 @@
 let scenes = [], cameras = [], renderers = [], controls = [], models = [];
 let sceneFullscreen, cameraFullscreen, rendererFullscreen, controlsFullscreen, modelFullscreen;
-let isRotating = [false, false, false, false, false, false, false, false, false];  // برای 9 تا مدل
+let isRotating = Array(25).fill(false);  // تغییر از 20 به 25
 let currentModelIndex = 0; // Track which model is being viewed in fullscreen
 let mainScene, mainCamera, mainRenderer, mainControls, mainModel;
 let isMainRotating = false;
@@ -127,6 +127,105 @@ const GPU_MODELS = [
             powerUsage: "450W",
             baseClock: "2.63 GHz"
         }
+    },
+    // RTX 3050
+    {
+        name: "RTX 3050",
+        color: 0x60a5fa,
+        specs: {
+            memory: "8GB GDDR6",
+            releaseDate: "January 27, 2022",
+            powerUsage: "130 W",
+            baseClock: "1,552 MHz"
+        }
+    },
+    // RTX 3060
+    {
+        name: "RTX 3060",
+        color: 0x60a5fa,
+        specs: {
+            memory: "12GB GDDR6",
+            releaseDate: "February 25, 2021",
+            powerUsage: "170 W",
+            baseClock: "1,320 MHz"
+        }
+    },
+    // RTX 3060 Ti
+    {
+        name: "RTX 3060 Ti",
+        color: 0x60a5fa,
+        specs: {
+            memory: "8GB GDDR6",
+            releaseDate: "December 2, 2020",
+            powerUsage: "200 W",
+            baseClock: "1,410 MHz"
+        }
+    },
+    // RTX 3070
+    {
+        name: "RTX 3070",
+        color: 0x60a5fa,
+        specs: {
+            memory: "8GB GDDR6",
+            releaseDate: "October 29, 2020",
+            powerUsage: "220 W",
+            baseClock: "1,500 MHz"
+        }
+    },
+    // RTX 3070 Ti
+    {
+        name: "RTX 3070 Ti",
+        color: 0x60a5fa,
+        specs: {
+            memory: "8GB GDDR6X",
+            releaseDate: "June 10, 2021",
+            powerUsage: "290 W",
+            baseClock: "1,575 MHz"
+        }
+    },
+    // RTX 3080
+    {
+        name: "RTX 3080",
+        color: 0x60a5fa,
+        specs: {
+            memory: "10GB GDDR6X",
+            releaseDate: "September 17, 2020",
+            powerUsage: "320 W",
+            baseClock: "1,440 MHz"
+        }
+    },
+    // RTX 3080 Ti
+    {
+        name: "RTX 3080 Ti",
+        color: 0x60a5fa,
+        specs: {
+            memory: "12GB GDDR6X",
+            releaseDate: "June 3, 2021",
+            powerUsage: "350 W",
+            baseClock: "1,365 MHz"
+        }
+    },
+    // RTX 3090
+    {
+        name: "RTX 3090",
+        color: 0x60a5fa,
+        specs: {
+            memory: "24GB GDDR6X",
+            releaseDate: "September 24, 2020",
+            powerUsage: "350 W",
+            baseClock: "1,395 MHz"
+        }
+    },
+    // RTX 3090 Ti
+    {
+        name: "RTX 3090 Ti",
+        color: 0x60a5fa,
+        specs: {
+            memory: "24GB GDDR6X",
+            releaseDate: "March 29, 2022",
+            powerUsage: "450 W",
+            baseClock: "1,560 MHz"
+        }
     }
 ];
 
@@ -174,6 +273,9 @@ function initMainView() {
 }
 
 function init() {
+    // Add this line at the beginning of init function
+    document.title = "RTX Models";
+    
     // Initialize main models (2060, 2060 Super, and 4090)
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x374151);
@@ -188,60 +290,62 @@ function init() {
     document.getElementById('model-container-2060').appendChild(renderer.domElement);
     renderers.push(renderer);
 
-    // RTX 2060
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-    scene.add(ambientLight);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(5, 5, 5);
-    scene.add(directionalLight);
+    // RTX 2060 - جایگزینی مکعب با مدل Sketchfab
+    const container2060 = document.getElementById('model-container-2060');
+    if (container2060) {
+        // حذف renderer قبلی
+        container2060.innerHTML = `
+            <iframe
+                title="GeForce RTX 2060 Founders Edition"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                xr-spatial-tracking
+                execution-while-out-of-viewport
+                execution-while-not-rendered
+                web-share
+                src="https://sketchfab.com/models/ce2ad74ed4254d79830f94ec966234c9/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0"
+                style="width: 100%; height: 250px; border-radius: 10px;"
+            ></iframe>
+        `;
+    }
 
-    const control = new THREE.OrbitControls(camera, renderer.domElement);
-    control.enableDamping = true;
-    control.dampingFactor = 0.05;
-    controls.push(control);
+    // حذف کد مربوط به scene و model برای RTX 2060 چون دیگر نیازی نیست
+    scenes.push(null);
+    cameras.push(null);
+    renderers.push(null);
+    controls.push(null);
+    models.push(null);
 
-    const geometry = new THREE.BoxGeometry(2, 1, 3);
-    const material = new THREE.MeshPhongMaterial({ 
-        color: 0x60a5fa,
-        specular: 0x050505,
-        shininess: 100
-    });
-    const model = new THREE.Mesh(geometry, material);
-    model.rotation.x = 0.3;
-    model.rotation.y = -0.5;
-    scene.add(model);
-    models.push(model);
+    // RTX 2060 Super - جایگزینی مکعب با مدل Sketchfab
+    const container2060Super = document.getElementById('model-container-2060-super');
+    if (container2060Super) {
+        container2060Super.innerHTML = `
+            <iframe
+                title="GeForce RTX 2060 Super Founders Edition"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                xr-spatial-tracking
+                execution-while-out-of-viewport
+                execution-while-not-rendered
+                web-share
+                src="https://sketchfab.com/models/effa97d28abc492698a5cc0a8a33a131/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0"
+                style="width: 100%; height: 250px; border-radius: 10px;"
+            ></iframe>
+        `;
+    }
 
-    // RTX 2060 Super
-    const sceneSuper = new THREE.Scene();
-    sceneSuper.background = new THREE.Color(0x374151);
-    scenes.push(sceneSuper);
-
-    const cameraSuper = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
-    cameraSuper.position.z = 5;
-    cameras.push(cameraSuper);
-
-    const rendererSuper = new THREE.WebGLRenderer({ antialias: true });
-    rendererSuper.setSize(250, 250);
-    document.getElementById('model-container-2060-super').appendChild(rendererSuper.domElement);
-    renderers.push(rendererSuper);
-
-    const ambientLightSuper = new THREE.AmbientLight(0xffffff, 0.7);
-    sceneSuper.add(ambientLightSuper);
-    const directionalLightSuper = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLightSuper.position.set(5, 5, 5);
-    sceneSuper.add(directionalLightSuper);
-
-    const controlSuper = new THREE.OrbitControls(cameraSuper, rendererSuper.domElement);
-    controlSuper.enableDamping = true;
-    controlSuper.dampingFactor = 0.05;
-    controls.push(controlSuper);
-
-    const modelSuper = new THREE.Mesh(geometry, material);
-    modelSuper.rotation.x = 0.3;
-    modelSuper.rotation.y = -0.5;
-    sceneSuper.add(modelSuper);
-    models.push(modelSuper);
+    // حذف کد مربوط به scene و model برای RTX 2060 Super چون دیگر نیازی نیست
+    scenes.push(null);
+    cameras.push(null);
+    renderers.push(null);
+    controls.push(null);
+    models.push(null);
 
     // RTX 2070
     const scene2070 = new THREE.Scene();
@@ -495,26 +599,469 @@ function init() {
         model4090.rotation.y = -0.5;
     });
 
+    // RTX 3050
+    const scene3050 = new THREE.Scene();
+    scene3050.background = new THREE.Color(0x374151);
+    scenes.push(scene3050);
+
+    const camera3050 = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    camera3050.position.z = 5;
+    cameras.push(camera3050);
+
+    const renderer3050 = new THREE.WebGLRenderer({ antialias: true });
+    renderer3050.setSize(250, 250);
+    document.getElementById('model-container-3050').appendChild(renderer3050.domElement);
+    renderers.push(renderer3050);
+
+    const ambientLight3050 = new THREE.AmbientLight(0xffffff, 0.7);
+    scene3050.add(ambientLight3050);
+    const directionalLight3050 = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight3050.position.set(5, 5, 5);
+    scene3050.add(directionalLight3050);
+
+    const control3050 = new THREE.OrbitControls(camera3050, renderer3050.domElement);
+    control3050.enableDamping = true;
+    control3050.dampingFactor = 0.05;
+    controls.push(control3050);
+
+    const model3050 = new THREE.Mesh(geometry, material);
+    model3050.rotation.x = 0.3;
+    model3050.rotation.y = -0.5;
+    scene3050.add(model3050);
+    models.push(model3050);
+
+    // RTX 3060
+    const scene3060 = new THREE.Scene();
+    scene3060.background = new THREE.Color(0x374151);
+    scenes.push(scene3060);
+
+    const camera3060 = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    camera3060.position.z = 5;
+    cameras.push(camera3060);
+
+    const renderer3060 = new THREE.WebGLRenderer({ antialias: true });
+    renderer3060.setSize(250, 250);
+    document.getElementById('model-container-3060').appendChild(renderer3060.domElement);
+    renderers.push(renderer3060);
+
+    const ambientLight3060 = new THREE.AmbientLight(0xffffff, 0.7);
+    scene3060.add(ambientLight3060);
+    const directionalLight3060 = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight3060.position.set(5, 5, 5);
+    scene3060.add(directionalLight3060);
+
+    const control3060 = new THREE.OrbitControls(camera3060, renderer3060.domElement);
+    control3060.enableDamping = true;
+    control3060.dampingFactor = 0.05;
+    controls.push(control3060);
+
+    const model3060 = new THREE.Mesh(geometry, material);
+    model3060.rotation.x = 0.3;
+    model3060.rotation.y = -0.5;
+    scene3060.add(model3060);
+    models.push(model3060);
+
+    // RTX 3060 Ti
+    const scene3060Ti = new THREE.Scene();
+    scene3060Ti.background = new THREE.Color(0x374151);
+    scenes.push(scene3060Ti);
+
+    const camera3060Ti = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    camera3060Ti.position.z = 5;
+    cameras.push(camera3060Ti);
+
+    const renderer3060Ti = new THREE.WebGLRenderer({ antialias: true });
+    renderer3060Ti.setSize(250, 250);
+    document.getElementById('model-container-3060ti').appendChild(renderer3060Ti.domElement);
+    renderers.push(renderer3060Ti);
+
+    const ambientLight3060Ti = new THREE.AmbientLight(0xffffff, 0.7);
+    scene3060Ti.add(ambientLight3060Ti);
+    const directionalLight3060Ti = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight3060Ti.position.set(5, 5, 5);
+    scene3060Ti.add(directionalLight3060Ti);
+
+    const control3060Ti = new THREE.OrbitControls(camera3060Ti, renderer3060Ti.domElement);
+    control3060Ti.enableDamping = true;
+    control3060Ti.dampingFactor = 0.05;
+    controls.push(control3060Ti);
+
+    const model3060Ti = new THREE.Mesh(geometry, material);
+    model3060Ti.rotation.x = 0.3;
+    model3060Ti.rotation.y = -0.5;
+    scene3060Ti.add(model3060Ti);
+    models.push(model3060Ti);
+
+    // RTX 3050
+    const modelWrapper3050 = document.querySelector('#model-container-3050').parentElement;
+    modelWrapper3050.addEventListener('mouseenter', () => {
+        isRotating[8] = true;  // تغییر به ایندکس 8
+    });
+    modelWrapper3050.addEventListener('mouseleave', () => {
+        isRotating[8] = false;
+        models[8].rotation.x = 0.3;
+        models[8].rotation.y = -0.5;
+    });
+
+    // RTX 3060
+    const modelWrapper3060 = document.querySelector('#model-container-3060').parentElement;
+    modelWrapper3060.addEventListener('mouseenter', () => {
+        isRotating[9] = true;  // تغییر به ایندکس 9
+    });
+    modelWrapper3060.addEventListener('mouseleave', () => {
+        isRotating[9] = false;
+        models[9].rotation.x = 0.3;
+        models[9].rotation.y = -0.5;
+    });
+
+    // RTX 3060 Ti
+    const modelWrapper3060Ti = document.querySelector('#model-container-3060ti').parentElement;
+    modelWrapper3060Ti.addEventListener('mouseenter', () => {
+        isRotating[10] = true;  // تغییر به ایندکس 10
+    });
+    modelWrapper3060Ti.addEventListener('mouseleave', () => {
+        isRotating[10] = false;
+        models[10].rotation.x = 0.3;
+        models[10].rotation.y = -0.5;
+    });
+
+    // RTX 3070
+    const scene3070 = new THREE.Scene();
+    scene3070.background = new THREE.Color(0x374151);
+    scenes.push(scene3070);
+
+    const camera3070 = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    camera3070.position.z = 5;
+    cameras.push(camera3070);
+
+    const renderer3070 = new THREE.WebGLRenderer({ antialias: true });
+    renderer3070.setSize(250, 250);
+    document.getElementById('model-container-3070').appendChild(renderer3070.domElement);
+    renderers.push(renderer3070);
+
+    const ambientLight3070 = new THREE.AmbientLight(0xffffff, 0.7);
+    scene3070.add(ambientLight3070);
+    const directionalLight3070 = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight3070.position.set(5, 5, 5);
+    scene3070.add(directionalLight3070);
+
+    const control3070 = new THREE.OrbitControls(camera3070, renderer3070.domElement);
+    control3070.enableDamping = true;
+    control3070.dampingFactor = 0.05;
+    controls.push(control3070);
+
+    const model3070 = new THREE.Mesh(geometry, material);
+    model3070.rotation.x = 0.3;
+    model3070.rotation.y = -0.5;
+    scene3070.add(model3070);
+    models.push(model3070);
+
+    // RTX 3070 Ti
+    const scene3070Ti = new THREE.Scene();
+    scene3070Ti.background = new THREE.Color(0x374151);
+    scenes.push(scene3070Ti);
+
+    const camera3070Ti = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    camera3070Ti.position.z = 5;
+    cameras.push(camera3070Ti);
+
+    const renderer3070Ti = new THREE.WebGLRenderer({ antialias: true });
+    renderer3070Ti.setSize(250, 250);
+    document.getElementById('model-container-3070ti').appendChild(renderer3070Ti.domElement);
+    renderers.push(renderer3070Ti);
+
+    const ambientLight3070Ti = new THREE.AmbientLight(0xffffff, 0.7);
+    scene3070Ti.add(ambientLight3070Ti);
+    const directionalLight3070Ti = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight3070Ti.position.set(5, 5, 5);
+    scene3070Ti.add(directionalLight3070Ti);
+
+    const control3070Ti = new THREE.OrbitControls(camera3070Ti, renderer3070Ti.domElement);
+    control3070Ti.enableDamping = true;
+    control3070Ti.dampingFactor = 0.05;
+    controls.push(control3070Ti);
+
+    const model3070Ti = new THREE.Mesh(geometry, material);
+    model3070Ti.rotation.x = 0.3;
+    model3070Ti.rotation.y = -0.5;
+    scene3070Ti.add(model3070Ti);
+    models.push(model3070Ti);
+
+    // RTX 3070
+    const modelWrapper3070 = document.querySelector('#model-container-3070').parentElement;
+    modelWrapper3070.addEventListener('mouseenter', () => {
+        isRotating[11] = true;  // تغییر به ایندکس 11
+    });
+    modelWrapper3070.addEventListener('mouseleave', () => {
+        isRotating[11] = false;
+        model3070.rotation.x = 0.3;
+        model3070.rotation.y = -0.5;
+    });
+
+    // RTX 3070 Ti
+    const modelWrapper3070Ti = document.querySelector('#model-container-3070ti').parentElement;
+    modelWrapper3070Ti.addEventListener('mouseenter', () => {
+        isRotating[12] = true;  // تغییر به ایندکس 12
+    });
+    modelWrapper3070Ti.addEventListener('mouseleave', () => {
+        isRotating[12] = false;
+        model3070Ti.rotation.x = 0.3;
+        model3070Ti.rotation.y = -0.5;
+    });
+
+    // RTX 3080
+    const scene3080 = new THREE.Scene();
+    scene3080.background = new THREE.Color(0x374151);
+    scenes.push(scene3080);
+
+    const camera3080 = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
+    camera3080.position.z = 5;
+    cameras.push(camera3080);
+
+    const renderer3080 = new THREE.WebGLRenderer({ antialias: true });
+    renderer3080.setSize(250, 250);
+    document.getElementById('model-container-3080').appendChild(renderer3080.domElement);
+    renderers.push(renderer3080);
+
+    const ambientLight3080 = new THREE.AmbientLight(0xffffff, 0.7);
+    scene3080.add(ambientLight3080);
+    const directionalLight3080 = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight3080.position.set(5, 5, 5);
+    scene3080.add(directionalLight3080);
+
+    const control3080 = new THREE.OrbitControls(camera3080, renderer3080.domElement);
+    control3080.enableDamping = true;
+    control3080.dampingFactor = 0.05;
+    controls.push(control3080);
+
+    const model3080 = new THREE.Mesh(geometry, material);
+    model3080.rotation.x = 0.3;
+    model3080.rotation.y = -0.5;
+    scene3080.add(model3080);
+    models.push(model3080);
+
+    // RTX 3080
+    const modelWrapper3080 = document.querySelector('#model-container-3080').parentElement;
+    modelWrapper3080.addEventListener('mouseenter', () => {
+        isRotating[13] = true;  // تغییر به ایندکس 13
+    });
+    modelWrapper3080.addEventListener('mouseleave', () => {
+        isRotating[13] = false;
+        model3080.rotation.x = 0.3;
+        model3080.rotation.y = -0.5;
+    });
+
+    // RTX 3080 Ti
+    const modelWrapper3080Ti = document.querySelector('#model-container-3080ti').parentElement;
+    modelWrapper3080Ti.addEventListener('mouseenter', () => {
+        isRotating[14] = true;  // تغییر به ایندکس 14
+    });
+    modelWrapper3080Ti.addEventListener('mouseleave', () => {
+        isRotating[14] = false;
+        model3080Ti.rotation.x = 0.3;
+        model3080Ti.rotation.y = -0.5;
+    });
+
+    // RTX 3090
+    const modelWrapper3090 = document.querySelector('#model-container-3090').parentElement;
+    modelWrapper3090.addEventListener('mouseenter', () => {
+        isRotating[15] = true;  // تغییر به ایندکس 15
+    });
+    modelWrapper3090.addEventListener('mouseleave', () => {
+        isRotating[15] = false;
+        model3090.rotation.x = 0.3;
+        model3090.rotation.y = -0.5;
+    });
+
+    // RTX 3090 Ti
+    const modelWrapper3090Ti = document.querySelector('#model-container-3090ti').parentElement;
+    modelWrapper3090Ti.addEventListener('mouseenter', () => {
+        isRotating[16] = true;  // تغییر به ایندکس 16
+    });
+    modelWrapper3090Ti.addEventListener('mouseleave', () => {
+        isRotating[16] = false;
+        model3090Ti.rotation.x = 0.3;
+        model3090Ti.rotation.y = -0.5;
+    });
+
     initFullscreenView();
     animate();
     setupHoverListeners();
 }
 
 function setupHoverListeners() {
-    const modelWrappers = document.querySelectorAll('.model-info-wrapper');
-    
-    modelWrappers.forEach((wrapper, index) => {
-        wrapper.addEventListener('mouseenter', () => {
-            isRotating[index] = true;
-        });
-        
-        wrapper.addEventListener('mouseleave', () => {
-            isRotating[index] = false;
-            if (models[index]) {
-                models[index].rotation.x = 0.3;
-                models[index].rotation.y = -0.5;
-            }
-        });
+    // RTX 2060 دیگر نیازی به hover effect ندارد چون مدل Sketchfab خودش انیمیشن دارد
+    const modelWrapper2060 = document.querySelector('#model-container-2060').parentElement;
+    modelWrapper2060.addEventListener('mouseenter', () => {
+        // می‌توانید اینجا کد دیگری اضافه کنید اگر می‌خواهید
+    });
+    modelWrapper2060.addEventListener('mouseleave', () => {
+        // می‌توانید اینجا کد دیگری اضافه کنید اگر می‌خواهید
+    });
+
+    // RTX 2060 Super
+    const modelWrapper2060Super = document.querySelector('#model-container-2060-super').parentElement;
+    modelWrapper2060Super.addEventListener('mouseenter', () => {
+        isRotating[1] = true;
+    });
+    modelWrapper2060Super.addEventListener('mouseleave', () => {
+        isRotating[1] = false;
+        models[1].rotation.x = 0.3;
+        models[1].rotation.y = -0.5;
+    });
+
+    // RTX 2070
+    const modelWrapper2070 = document.querySelector('#model-container-2070').parentElement;
+    modelWrapper2070.addEventListener('mouseenter', () => {
+        isRotating[2] = true;
+    });
+    modelWrapper2070.addEventListener('mouseleave', () => {
+        isRotating[2] = false;
+        models[2].rotation.x = 0.3;
+        models[2].rotation.y = -0.5;
+    });
+
+    // RTX 2070 Super
+    const modelWrapper2070Super = document.querySelector('#model-container-2070-super').parentElement;
+    modelWrapper2070Super.addEventListener('mouseenter', () => {
+        isRotating[3] = true;
+    });
+    modelWrapper2070Super.addEventListener('mouseleave', () => {
+        isRotating[3] = false;
+        models[3].rotation.x = 0.3;
+        models[3].rotation.y = -0.5;
+    });
+
+    // RTX 2080
+    const modelWrapper2080 = document.querySelector('#model-container-2080').parentElement;
+    modelWrapper2080.addEventListener('mouseenter', () => {
+        isRotating[4] = true;
+    });
+    modelWrapper2080.addEventListener('mouseleave', () => {
+        isRotating[4] = false;
+        models[4].rotation.x = 0.3;
+        models[4].rotation.y = -0.5;
+    });
+
+    // RTX 2080 Super
+    const modelWrapper2080Super = document.querySelector('#model-container-2080-super').parentElement;
+    modelWrapper2080Super.addEventListener('mouseenter', () => {
+        isRotating[5] = true;
+    });
+    modelWrapper2080Super.addEventListener('mouseleave', () => {
+        isRotating[5] = false;
+        models[5].rotation.x = 0.3;
+        models[5].rotation.y = -0.5;
+    });
+
+    // RTX 2080 Ti
+    const modelWrapper2080Ti = document.querySelector('#model-container-2080-ti').parentElement;
+    modelWrapper2080Ti.addEventListener('mouseenter', () => {
+        isRotating[6] = true;
+    });
+    modelWrapper2080Ti.addEventListener('mouseleave', () => {
+        isRotating[6] = false;
+        models[6].rotation.x = 0.3;
+        models[6].rotation.y = -0.5;
+    });
+
+    // RTX 3050
+    const modelWrapper3050 = document.querySelector('#model-container-3050').parentElement;
+    modelWrapper3050.addEventListener('mouseenter', () => {
+        isRotating[8] = true;  // تغییر به ایندکس 8
+    });
+    modelWrapper3050.addEventListener('mouseleave', () => {
+        isRotating[8] = false;
+        models[8].rotation.x = 0.3;
+        models[8].rotation.y = -0.5;
+    });
+
+    // RTX 3060
+    const modelWrapper3060 = document.querySelector('#model-container-3060').parentElement;
+    modelWrapper3060.addEventListener('mouseenter', () => {
+        isRotating[9] = true;  // تغییر به ایندکس 9
+    });
+    modelWrapper3060.addEventListener('mouseleave', () => {
+        isRotating[9] = false;
+        models[9].rotation.x = 0.3;
+        models[9].rotation.y = -0.5;
+    });
+
+    // RTX 3060 Ti
+    const modelWrapper3060Ti = document.querySelector('#model-container-3060ti').parentElement;
+    modelWrapper3060Ti.addEventListener('mouseenter', () => {
+        isRotating[10] = true;  // تغییر به ایندکس 10
+    });
+    modelWrapper3060Ti.addEventListener('mouseleave', () => {
+        isRotating[10] = false;
+        models[10].rotation.x = 0.3;
+        models[10].rotation.y = -0.5;
+    });
+
+    // RTX 3070
+    const modelWrapper3070 = document.querySelector('#model-container-3070').parentElement;
+    modelWrapper3070.addEventListener('mouseenter', () => {
+        isRotating[11] = true;  // تغییر به ایندکس 11
+    });
+    modelWrapper3070.addEventListener('mouseleave', () => {
+        isRotating[11] = false;
+        models[11].rotation.x = 0.3;
+        models[11].rotation.y = -0.5;
+    });
+
+    // RTX 3070 Ti
+    const modelWrapper3070Ti = document.querySelector('#model-container-3070ti').parentElement;
+    modelWrapper3070Ti.addEventListener('mouseenter', () => {
+        isRotating[12] = true;  // تغییر به ایندکس 12
+    });
+    modelWrapper3070Ti.addEventListener('mouseleave', () => {
+        isRotating[12] = false;
+        models[12].rotation.x = 0.3;
+        models[12].rotation.y = -0.5;
+    });
+
+    // RTX 3080
+    const modelWrapper3080 = document.querySelector('#model-container-3080').parentElement;
+    modelWrapper3080.addEventListener('mouseenter', () => {
+        isRotating[13] = true;  // تغییر به ایندکس 13
+    });
+    modelWrapper3080.addEventListener('mouseleave', () => {
+        isRotating[13] = false;
+        models[13].rotation.x = 0.3;
+        models[13].rotation.y = -0.5;
+    });
+
+    // RTX 3080 Ti
+    const modelWrapper3080Ti = document.querySelector('#model-container-3080ti').parentElement;
+    modelWrapper3080Ti.addEventListener('mouseenter', () => {
+        isRotating[14] = true;  // تغییر به ایندکس 14
+    });
+    modelWrapper3080Ti.addEventListener('mouseleave', () => {
+        isRotating[14] = false;
+        models[14].rotation.x = 0.3;
+        models[14].rotation.y = -0.5;
+    });
+
+    // RTX 3090
+    const modelWrapper3090 = document.querySelector('#model-container-3090').parentElement;
+    modelWrapper3090.addEventListener('mouseenter', () => {
+        isRotating[15] = true;  // تغییر به ایندکس 15
+    });
+    modelWrapper3090.addEventListener('mouseleave', () => {
+        isRotating[15] = false;
+        models[15].rotation.x = 0.3;
+        models[15].rotation.y = -0.5;
+    });
+
+    // RTX 3090 Ti
+    const modelWrapper3090Ti = document.querySelector('#model-container-3090ti').parentElement;
+    modelWrapper3090Ti.addEventListener('mouseenter', () => {
+        isRotating[16] = true;  // تغییر به ایندکس 16
+    });
+    modelWrapper3090Ti.addEventListener('mouseleave', () => {
+        isRotating[16] = false;
+        models[16].rotation.x = 0.3;
+        models[16].rotation.y = -0.5;
     });
 }
 
@@ -657,14 +1204,14 @@ function animate() {
         modelFullscreen.rotation.y += 0.005;
     }
     
-    controls.forEach(control => control?.update());
-    controlsFullscreen?.update();
-    
-    scenes.forEach((scene, index) => {
-        renderers[index]?.render(scene, cameras[index]);
+    controls.forEach((control, index) => {
+        if (control && scenes[index] && cameras[index] && renderers[index]) {
+            control.update();
+            renderers[index].render(scenes[index], cameras[index]);
+        }
     });
 
-    if (document.getElementById('fullscreen-view').classList.contains('active')) {
+    if (document.getElementById('fullscreen-view').classList.contains('active') && !document.querySelector('#model-container-full iframe')) {
         rendererFullscreen.render(sceneFullscreen, cameraFullscreen);
     }
 }
@@ -673,7 +1220,32 @@ function openFullView(index, isRTX2060 = false) {
     const fullscreenView = document.getElementById('fullscreen-view');
     const containerFull = document.getElementById('model-container-full');
     
-    updateFullscreenModel(index, isRTX2060);
+    if ((isRTX2060 && index === 0) || (isRTX2060 && index === 1)) { // اضافه کردن شرط برای 2060 Super
+        // نمایش مدل Sketchfab در حالت fullscreen
+        const modelUrl = index === 0 
+            ? "ce2ad74ed4254d79830f94ec966234c9"  // RTX 2060
+            : "effa97d28abc492698a5cc0a8a33a131"; // RTX 2060 Super
+            
+        containerFull.innerHTML = `
+            <iframe
+                title="GeForce RTX ${index === 0 ? '2060' : '2060 Super'} Founders Edition"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                xr-spatial-tracking
+                execution-while-out-of-viewport
+                execution-while-not-rendered
+                web-share
+                src="https://sketchfab.com/models/${modelUrl}/embed?autostart=1&ui_controls=1&ui_infos=1"
+                style="width: 100%; height: 100%;"
+            ></iframe>
+        `;
+    } else {
+        updateFullscreenModel(index, isRTX2060);
+    }
+    
     fullscreenView.classList.add('active');
     
     if (!containerFull.hasChildNodes()) {

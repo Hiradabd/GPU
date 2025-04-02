@@ -315,4 +315,13 @@ body {
     font-weight: bold;
     font-size: 1rem;
     text-shadow: 0 0 5px rgba(96, 165, 250, 0.2);
+}
+
+.model-view-section iframe {
+    border-radius: 10px;
+    background-color: #374151;
+}
+
+#model-container-full iframe {
+    border-radius: 15px;
 } 
