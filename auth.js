@@ -16,9 +16,14 @@ function createAccount(event) {
     
     const username = document.querySelector('.sign-up-form #username').value;
     const email = document.querySelector('.sign-up-form #email').value;
-    const password = document.querySelector('.sign-up-form #password').value;
+    const password = document.querySelector('.sign-up-form #signup-password').value;
 
     // بررسی اعتبار داده‌ها
+    if (!username || !email || !password) {
+        alert('Please fill in all fields');
+        return;
+    }
+    
     if (username.length < 3) {
         alert('Username must be at least 3 characters long');
         return;

@@ -753,7 +753,7 @@ function handleBack() {
     }
     // اگر در نمای اصلی هستیم
     else {
-        window.location.href = 'brands.html';
+        window.location.href = 'nvidia-series.html';
     }
 }
 
@@ -824,13 +824,10 @@ function logout() {
 // نمایش نام کاربر
 window.addEventListener('load', () => {
     const currentUser = localStorage.getItem('currentUser');
-    if (!currentUser) {
-        window.location.href = 'index.html';
-        return;
-    }
-    
-    const usernameDisplay = document.getElementById('username-display');
-    if (usernameDisplay) {
-        usernameDisplay.textContent = `Welcome, ${currentUser}!`;
+    if (currentUser) {
+        const usernameDisplay = document.getElementById('username-display');
+        if (usernameDisplay) {
+            usernameDisplay.textContent = `Welcome, ${currentUser}!`;
+        }
     }
 }); 

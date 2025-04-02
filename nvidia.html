@@ -9,8 +9,141 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="nvidia-auth.js"></script>
+    <style>
+        /* Hamburger Menu Styles */
+        .hamburger-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        
+        .hamburger-icon {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+        }
+        
+        .hamburger-icon span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #1f2937;
+            z-index: 999;
+            transition: right 0.3s ease;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .sidebar.active {
+            right: 0;
+        }
+        
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid #374151;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .sidebar-header h3 {
+            color: #fff;
+            margin: 0;
+        }
+        
+        .close-sidebar {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+        
+        .sidebar-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-menu li {
+            padding: 10px 20px;
+            transition: background-color 0.2s;
+        }
+        
+        .sidebar-menu li:hover {
+            background-color: #374151;
+        }
+        
+        .sidebar-menu a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            display: none;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+    </style>
 </head>
 <body>
+    <!-- Overlay for sidebar -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu" id="hamburger-menu">
+        <div class="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menu</h3>
+            <button class="close-sidebar" id="close-sidebar">&times;</button>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="nvidia-series.html">NVIDIA Series</a></li>
+                <li><a href="brands.html">All Brands</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    
     <div class="fullscreen-view" id="fullscreen-view">
         <div class="fullscreen-content">
             <div class="model-section">
@@ -43,6 +176,11 @@
     </div>
 
     <div class="container nvidia-container">
+        <!-- Navigation Controls -->
+        <div class="nav-controls" style="position: absolute; top: 20px; left: 20px;">
+            <button class="back-button" onclick="handleBack()">Back</button>
+        </div>
+        
         <!-- Main View -->
         <div id="main-view" class="models-row">
             <!-- RTX 2060 -->
@@ -345,10 +483,31 @@
                 </div>
             </div>
         </div>
-
-        <!-- دکمه back با تابع جدید -->
-        <button class="back-button" onclick="handleBack()">Back</button>
     </div>
     <script src="script.js"></script>
+    <script>
+        // Hamburger Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburgerMenu = document.getElementById('hamburger-menu');
+            const sidebar = document.getElementById('sidebar');
+            const closeSidebar = document.getElementById('close-sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            hamburgerMenu.addEventListener('click', function() {
+                sidebar.classList.add('active');
+                overlay.classList.add('active');
+            });
+            
+            closeSidebar.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+            
+            overlay.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html> 
