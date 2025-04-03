@@ -311,14 +311,13 @@ function init() {
         `;
     }
 
-    // حذف کد مربوط به scene و model برای RTX 2060 چون دیگر نیازی نیست
     scenes.push(null);
     cameras.push(null);
     renderers.push(null);
     controls.push(null);
     models.push(null);
 
-    // RTX 2060 Super - جایگزینی مکعب با مدل Sketchfab
+
     const container2060Super = document.getElementById('model-container-2060-super');
     if (container2060Super) {
         container2060Super.innerHTML = `
@@ -339,14 +338,14 @@ function init() {
         `;
     }
 
-    // حذف کد مربوط به scene و model برای RTX 2060 Super چون دیگر نیازی نیست
+
     scenes.push(null);
     cameras.push(null);
     renderers.push(null);
     controls.push(null);
     models.push(null);
 
-    // RTX 2070 - جایگزینی مکعب با مدل Sketchfab
+
     const container2070 = document.getElementById('model-container-2070');
     if (container2070) {
         container2070.innerHTML = `
@@ -487,46 +486,32 @@ function init() {
     models.push(null);
 
     // RTX 4090
-    const scene4090 = new THREE.Scene();
-    scene4090.background = new THREE.Color(0x374151);
-    scenes.push(scene4090);
+    const container4090 = document.getElementById('model-container-4090');
+    if (container4090) {
+        container4090.innerHTML = `
+            <iframe
+                title="GeForce RTX 4090 Founders Edition"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                xr-spatial-tracking
+                execution-while-out-of-viewport
+                execution-while-not-rendered
+                web-share
+                src="https://sketchfab.com/models/d417c0b4c3bd475eb9669afcd14a2601/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0"
+                style="width: 100%; height: 250px; border-radius: 10px;"
+            ></iframe>
+        `;
+    }
 
-    const camera4090 = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
-    camera4090.position.z = 5;
-    cameras.push(camera4090);
-
-    const renderer4090 = new THREE.WebGLRenderer({ antialias: true });
-    renderer4090.setSize(250, 250);
-    document.getElementById('model-container-4090').appendChild(renderer4090.domElement);
-    renderers.push(renderer4090);
-
-    const ambientLight4090 = new THREE.AmbientLight(0xffffff, 0.7);
-    scene4090.add(ambientLight4090);
-    const directionalLight4090 = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight4090.position.set(5, 5, 5);
-    scene4090.add(directionalLight4090);
-
-    const control4090 = new THREE.OrbitControls(camera4090, renderer4090.domElement);
-    control4090.enableDamping = true;
-    control4090.dampingFactor = 0.05;
-    controls.push(control4090);
-
-    const model4090 = new THREE.Mesh(geometry, material);
-    model4090.rotation.x = 0.3;
-    model4090.rotation.y = -0.5;
-    scene4090.add(model4090);
-    models.push(model4090);
-
-    // Add hover effect for 4090
-    const modelWrapper4090 = document.querySelector('#model-container-4090').parentElement;
-    modelWrapper4090.addEventListener('mouseenter', () => {
-        isRotating[7] = true;  // index 7 for 4090
-    });
-    modelWrapper4090.addEventListener('mouseleave', () => {
-        isRotating[7] = false;
-        model4090.rotation.x = 0.3;
-        model4090.rotation.y = -0.5;
-    });
+    // Since we're using Sketchfab model, we don't need the Three.js scene setup for 4090
+    scenes.push(null);
+    cameras.push(null);
+    renderers.push(null);
+    controls.push(null);
+    models.push(null);
 
     // RTX 3050
     const scene3050 = new THREE.Scene();
@@ -1237,49 +1222,90 @@ function navigateToGPUPage() {
 
 function initMainViews() {
     const variantContainers = ['model-container1', 'model-container2', 'model-container3'];
-    const colors = [0x60a5fa, 0xff4444, 0x44ff44]; // آبی، قرمز، سبز
     
-    variantContainers.forEach((containerId, index) => {
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x374151);
-        scenes.push(scene);
+    // Set up Founders Edition model with Sketchfab
+    const container1 = document.getElementById('model-container1');
+    if (container1) {
+        container1.innerHTML = `
+            <iframe
+                title="GeForce RTX 4090 Founders Edition"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                xr-spatial-tracking
+                execution-while-out-of-viewport
+                execution-while-not-rendered
+                web-share
+                src="https://sketchfab.com/models/d417c0b4c3bd475eb9669afcd14a2601/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0"
+                style="width: 100%; height: 250px; border-radius: 10px;"
+            ></iframe>
+        `;
+    }
+    
+    // Push null values for the first model since we're using Sketchfab
+    scenes.push(null);
+    cameras.push(null);
+    renderers.push(null);
+    controls.push(null);
+    models.push(null);
 
-        const camera = new THREE.PerspectiveCamera(75, 250 / 250, 0.1, 1000);
-        camera.position.z = 5;
-        cameras.push(camera);
+    // Set up ROG STRIX model with Sketchfab
+    const container2 = document.getElementById('model-container2');
+    if (container2) {
+        container2.innerHTML = `
+            <iframe
+                title="ASUS ROG GeForce RTX 4090"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                xr-spatial-tracking
+                execution-while-out-of-viewport
+                execution-while-not-rendered
+                web-share
+                src="https://sketchfab.com/models/6f527569f14b4efc94c7072842bd41ac/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0"
+                style="width: 100%; height: 250px; border-radius: 10px;"
+            ></iframe>
+        `;
+    }
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(250, 250);
-        const container = document.getElementById(containerId);
-        if (container) {
-            container.innerHTML = '';
-            container.appendChild(renderer.domElement);
-        }
-        renderers.push(renderer);
+    // Push null values for the second model since we're using Sketchfab
+    scenes.push(null);
+    cameras.push(null);
+    renderers.push(null);
+    controls.push(null);
+    models.push(null);
 
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
-        scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-        directionalLight.position.set(5, 5, 5);
-        scene.add(directionalLight);
+    // Set up SUPRIM X model with Sketchfab
+    const container3 = document.getElementById('model-container3');
+    if (container3) {
+        container3.innerHTML = `
+            <iframe
+                title="MSI SUPRIM X GeForce RTX 4090"
+                frameborder="0"
+                allowfullscreen
+                mozallowfullscreen="true"
+                webkitallowfullscreen="true"
+                allow="autoplay; fullscreen; xr-spatial-tracking"
+                xr-spatial-tracking
+                execution-while-out-of-viewport
+                execution-while-not-rendered
+                web-share
+                src="https://sketchfab.com/models/d417c0b4c3bd475eb9669afcd14a2601/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0"
+                style="width: 100%; height: 250px; border-radius: 10px;"
+            ></iframe>
+        `;
+    }
 
-        const control = new THREE.OrbitControls(camera, renderer.domElement);
-        control.enableDamping = true;
-        control.dampingFactor = 0.05;
-        controls.push(control);
-
-        const geometry = new THREE.BoxGeometry(2, 1, 3);
-        const material = new THREE.MeshPhongMaterial({ 
-            color: colors[index],
-            specular: 0x050505,
-            shininess: 100
-        });
-        const model = new THREE.Mesh(geometry, material);
-        model.rotation.x = 0.3;
-        model.rotation.y = -0.5;
-        scene.add(model);
-        models.push(model);
-    });
+    // Push null values for the third model since we're using Sketchfab
+    scenes.push(null);
+    cameras.push(null);
+    renderers.push(null);
+    controls.push(null);
+    models.push(null);
 }
 
 // اضافه کردن setupHoverListeners برای variants
