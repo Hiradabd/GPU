@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel Core i3 Processors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="menu-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <div class="hamburger-menu">
+        <div class="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Menu</h3>
+            <button class="close-sidebar">&times;</button>
+        </div>
+        <div class="sidebar-menu">
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="intel.html">Intel Series</a></li>
+                <li><a href="cpu-brands.html">All Brands</a></li>
+                <li><a href="#" onclick="logout()">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="overlay"></div>
+
+    <!-- Fullscreen View -->
+    <div class="fullscreen-view" id="fullscreen-view">
+        <div class="fullscreen-content">
+            <div class="model-section">
+                <div id="model-container-full"></div>
+            </div>
+            <div class="divider"></div>
+            <div class="specs-section">
+                <h2 class="specs-title">Core i3 Specifications</h2>
+                <div class="specs-content" id="fullscreen-specs">
+                    <!-- Specs will be populated dynamically -->
+                </div>
+            </div>
+            <button class="close-button" onclick="closeFullView()">Back</button>
+        </div>
+    </div>
+
+    <div class="container nvidia-container">
+        <!-- Navigation Controls -->
+        <div class="nav-controls">
+            <button class="back-button" onclick="window.location.href='intel.html'">Back</button>
+        </div>
+        
+        <!-- Main View -->
+        <div id="main-view" class="models-row">
+            <!-- 3rd Generation -->
+            <h2 class="generation-title">3rd Generation Core i3</h2>
+            <div class="generation-row">
+                <!-- i3-3220 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-3220" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-3220</h2>
+                        <button class="menu-button" onclick="openFullView(0)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">3.30 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">55W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-3240 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-3240" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-3240</h2>
+                        <button class="menu-button" onclick="openFullView(1)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">3.40 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">55W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-3250 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-3250" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-3250</h2>
+                        <button class="menu-button" onclick="openFullView(2)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">3.50 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">55W</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4th Generation -->
+            <h2 class="generation-title">4th Generation Core i3</h2>
+            <div class="generation-row">
+                <!-- i3-4130 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-4130" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-4130</h2>
+                        <button class="menu-button" onclick="openFullView(3)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">3.40 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">54W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-4150 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-4150" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-4150</h2>
+                        <button class="menu-button" onclick="openFullView(4)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">3.50 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">54W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-4160 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-4160" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-4160</h2>
+                        <button class="menu-button" onclick="openFullView(5)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">3.60 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">54W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-4170 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-4170" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-4170</h2>
+                        <button class="menu-button" onclick="openFullView(6)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">3.70 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">54W</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5th Generation -->
+            <h2 class="generation-title">5th Generation Core i3</h2>
+            <div class="generation-row">
+                <!-- i3-5005U -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-5005u" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-5005U</h2>
+                        <button class="menu-button" onclick="openFullView(7)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">2.00 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">15W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-5010U -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-5010u" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-5010U</h2>
+                        <button class="menu-button" onclick="openFullView(8)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">2.10 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">15W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-5015U -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-5015u" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-5015U</h2>
+                        <button class="menu-button" onclick="openFullView(9)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">2.10 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">15W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-5020U -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-5020u" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-5020U</h2>
+                        <button class="menu-button" onclick="openFullView(10)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">2.20 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">15W</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6th Generation -->
+            <h2 class="generation-title">6th Generation Core i3</h2>
+            <div class="generation-row">
+                <!-- i3-6100 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-6100" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-6100</h2>
+                        <button class="menu-button" onclick="openFullView(11)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">3.70 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">51W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-6300 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-6300" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-6300</h2>
+                        <button class="menu-button" onclick="openFullView(12)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">3.80 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">4 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">51W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-6320 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-6320" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-6320</h2>
+                        <button class="menu-button" onclick="openFullView(13)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">3.90 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">4 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">51W</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7th Generation -->
+            <h2 class="generation-title">7th Generation Core i3</h2>
+            <div class="generation-row">
+                <!-- i3-7100 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-7100" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-7100</h2>
+                        <button class="menu-button" onclick="openFullView(14)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">3.90 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">3 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">51W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-7300 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-7300" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-7300</h2>
+                        <button class="menu-button" onclick="openFullView(15)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">4.00 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">4 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">51W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-7320 -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-7320" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-7320</h2>
+                        <button class="menu-button" onclick="openFullView(16)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">4.10 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">4 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">51W</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- i3-7350K -->
+                <div class="model-info-wrapper">
+                    <div class="model-view-section">
+                        <div id="model-container-7350k" class="model-container"></div>
+                        <h2 class="model-title-small">Core i3-7350K</h2>
+                        <button class="menu-button" onclick="openFullView(17)">View Details</button>
+                    </div>
+                    <div class="quick-specs">
+                        <div class="spec-item">
+                            <span class="spec-label">Cores/Threads:</span>
+                            <span class="spec-value">2/4</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Base Clock:</span>
+                            <span class="spec-value">4.20 GHz</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Cache:</span>
+                            <span class="spec-value">4 MB</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">TDP:</span>
+                            <span class="spec-value">60W</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="menu.js"></script>
+    <script src="intel-i3.js"></script>
+</body>
+</html> 
