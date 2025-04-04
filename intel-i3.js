@@ -1,3 +1,11 @@
+// اضافه کردن در ابتدای فایل
+function checkAuth() {
+    const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser) {
+        window.location.href = 'index.html';
+    }
+}
+
 // CPU Model Data
 const cpuData = [
     {
@@ -269,6 +277,291 @@ const cpuData = [
             lithography: "14 nm",
             releaseDate: "Q1'17"
         }
+    },
+    {
+        model: "Core i3-8100",
+        specs: {
+            cores: "4 Cores, 4 Threads",
+            baseFrequency: "3.60 GHz",
+            cache: "6 MB Intel® Smart Cache",
+            tdp: "65 W",
+            maxMemory: "64 GB",
+            memoryTypes: "DDR4-2400",
+            graphics: "Intel® UHD Graphics 630",
+            socket: "LGA1151",
+            lithography: "14 nm",
+            releaseDate: "Q4'17"
+        }
+    },
+    {
+        model: "Core i3-8300",
+        specs: {
+            cores: "4 Cores, 4 Threads",
+            baseFrequency: "3.70 GHz",
+            cache: "8 MB Intel® Smart Cache",
+            tdp: "65 W",
+            maxMemory: "64 GB",
+            memoryTypes: "DDR4-2400",
+            graphics: "Intel® UHD Graphics 630",
+            socket: "LGA1151",
+            lithography: "14 nm",
+            releaseDate: "Q2'18"
+        }
+    },
+    {
+        model: "Core i3-8350K",
+        specs: {
+            cores: "4 Cores, 4 Threads",
+            baseFrequency: "4.00 GHz",
+            cache: "8 MB Intel® Smart Cache",
+            tdp: "91 W",
+            maxMemory: "64 GB",
+            memoryTypes: "DDR4-2400",
+            graphics: "Intel® UHD Graphics 630",
+            socket: "LGA1151",
+            lithography: "14 nm",
+            releaseDate: "Q4'17"
+        }
+    },
+    {
+        model: "Core i3-9100",
+        specs: {
+            cores: "4 Cores, 4 Threads",
+            baseFrequency: "3.60 GHz",
+            cache: "6 MB Intel® Smart Cache",
+            tdp: "65 W",
+            maxMemory: "64 GB",
+            memoryTypes: "DDR4-2400",
+            graphics: "Intel® UHD Graphics 630",
+            socket: "LGA1151",
+            lithography: "14 nm",
+            releaseDate: "Q2'19"
+        }
+    },
+    {
+        model: "Core i3-9300",
+        specs: {
+            cores: "4 Cores, 4 Threads",
+            baseFrequency: "3.70 GHz",
+            cache: "8 MB Intel® Smart Cache",
+            tdp: "65 W",
+            maxMemory: "64 GB",
+            memoryTypes: "DDR4-2400",
+            graphics: "Intel® UHD Graphics 630",
+            socket: "LGA1151",
+            lithography: "14 nm",
+            releaseDate: "Q2'19"
+        }
+    },
+    {
+        model: "Core i3-9350K",
+        specs: {
+            cores: "4 Cores, 4 Threads",
+            baseFrequency: "4.00 GHz",
+            cache: "8 MB Intel® Smart Cache",
+            tdp: "91 W",
+            maxMemory: "64 GB",
+            memoryTypes: "DDR4-2400",
+            graphics: "Intel® UHD Graphics 630",
+            socket: "LGA1151",
+            lithography: "14 nm",
+            releaseDate: "Q1'19"
+        }
+    },
+    {
+        model: "Core i3-10100",
+        specs: {
+            cores: "4 Cores, 8 Threads",
+            baseFrequency: "3.60 GHz",
+            cache: "6 MB Intel® Smart Cache",
+            tdp: "65 W",
+            maxMemory: "128 GB",
+            memoryTypes: "DDR4-2666",
+            graphics: "Intel® UHD Graphics 630",
+            socket: "LGA1200",
+            lithography: "14 nm",
+            releaseDate: "Q2'20"
+        }
+    },
+    {
+        model: "Core i3-10300",
+        specs: {
+            cores: "4 Cores, 8 Threads",
+            baseFrequency: "3.70 GHz",
+            cache: "8 MB Intel® Smart Cache",
+            tdp: "65 W",
+            maxMemory: "128 GB",
+            memoryTypes: "DDR4-2666",
+            graphics: "Intel® UHD Graphics 630",
+            socket: "LGA1200",
+            lithography: "14 nm",
+            releaseDate: "Q2'20"
+        }
+    },
+    {
+        model: "Core i3-10320",
+        specs: {
+            cores: "4 Cores, 8 Threads",
+            baseFrequency: "3.80 GHz",
+            cache: "8 MB Intel® Smart Cache",
+            tdp: "65 W",
+            maxMemory: "128 GB",
+            memoryTypes: "DDR4-2666",
+            graphics: "Intel® UHD Graphics 630",
+            socket: "LGA1200",
+            lithography: "14 nm",
+            releaseDate: "Q2'20"
+        }
+    },
+    {
+        model: "Core i3-10100F",
+        specs: {
+            cores: "4 Cores, 8 Threads",
+            baseFrequency: "3.60 GHz",
+            cache: "6 MB Intel® Smart Cache",
+            tdp: "65 W",
+            maxMemory: "128 GB",
+            memoryTypes: "DDR4-2666",
+            graphics: "None",
+            socket: "LGA1200",
+            lithography: "14 nm",
+            releaseDate: "Q4'20"
+        }
+    },
+    {
+        model: "Core i3-11100",
+        specs: {
+            cores: "4 Cores, 8 Threads",
+            baseFrequency: "3.60 GHz",
+            cache: "6 MB Intel® Smart Cache",
+            tdp: "65 W",
+            maxMemory: "128 GB",
+            memoryTypes: "DDR4-3200",
+            graphics: "Intel® UHD Graphics 730",
+            socket: "LGA1200",
+            lithography: "14 nm",
+            releaseDate: "Q1'21"
+        }
+    },
+    {
+        model: "Core i3-11300H",
+        specs: {
+            cores: "4 Cores, 8 Threads",
+            baseFrequency: "3.10 GHz",
+            cache: "8 MB Intel® Smart Cache",
+            tdp: "35 W",
+            maxMemory: "64 GB",
+            memoryTypes: "DDR4-3200",
+            graphics: "Intel® Iris® Xe Graphics",
+            socket: "BGA",
+            lithography: "10 nm SuperFin",
+            releaseDate: "Q1'21"
+        }
+    },
+    {
+        model: "Core i3-11100F",
+        specs: {
+            cores: "4 Cores, 8 Threads",
+            baseFrequency: "3.60 GHz",
+            cache: "6 MB Intel® Smart Cache",
+            tdp: "65 W",
+            maxMemory: "128 GB",
+            memoryTypes: "DDR4-3200",
+            graphics: "None",
+            socket: "LGA1200",
+            lithography: "14 nm",
+            releaseDate: "Q1'21"
+        }
+    },
+    {
+        model: "Core i3-12100",
+        specs: {
+            cores: "4 Cores (4P + 0E), 8 Threads",
+            baseFrequency: "3.30 GHz",
+            cache: "12 MB Intel® Smart Cache",
+            tdp: "60 W",
+            maxMemory: "128 GB",
+            memoryTypes: "DDR5-4800, DDR4-3200",
+            graphics: "Intel® UHD Graphics 730",
+            socket: "LGA1700",
+            lithography: "Intel 7",
+            releaseDate: "Q1'22"
+        }
+    },
+    {
+        model: "Core i3-12100F",
+        specs: {
+            cores: "4 Cores (4P + 0E), 8 Threads",
+            baseFrequency: "3.30 GHz",
+            cache: "12 MB Intel® Smart Cache",
+            tdp: "58 W",
+            maxMemory: "128 GB",
+            memoryTypes: "DDR5-4800, DDR4-3200",
+            graphics: "None",
+            socket: "LGA1700",
+            lithography: "Intel 7",
+            releaseDate: "Q1'22"
+        }
+    },
+    {
+        model: "Core i3-12300",
+        specs: {
+            cores: "4 Cores (4P + 0E), 8 Threads",
+            baseFrequency: "3.50 GHz",
+            cache: "12 MB Intel® Smart Cache",
+            tdp: "60 W",
+            maxMemory: "128 GB",
+            memoryTypes: "DDR5-4800, DDR4-3200",
+            graphics: "Intel® UHD Graphics 730",
+            socket: "LGA1700",
+            lithography: "Intel 7",
+            releaseDate: "Q1'22"
+        }
+    },
+    {
+        model: "Core i3-13100",
+        specs: {
+            cores: "4 Cores (4P + 0E), 8 Threads",
+            baseFrequency: "3.40 GHz",
+            cache: "12 MB Intel® Smart Cache",
+            tdp: "60 W",
+            maxMemory: "128 GB",
+            memoryTypes: "DDR5-5600, DDR4-3200",
+            graphics: "Intel® UHD Graphics 730",
+            socket: "LGA1700",
+            lithography: "Intel 7",
+            releaseDate: "Q1'23"
+        }
+    },
+    {
+        model: "Core i3-13100F",
+        specs: {
+            cores: "4 Cores (4P + 0E), 8 Threads",
+            baseFrequency: "3.40 GHz",
+            cache: "12 MB Intel® Smart Cache",
+            tdp: "58 W",
+            maxMemory: "128 GB",
+            memoryTypes: "DDR5-5600, DDR4-3200",
+            graphics: "None",
+            socket: "LGA1700",
+            lithography: "Intel 7",
+            releaseDate: "Q1'23"
+        }
+    },
+    {
+        model: "Core i3-13100T",
+        specs: {
+            cores: "4 Cores (4P + 0E), 8 Threads",
+            baseFrequency: "2.50 GHz",
+            cache: "12 MB Intel® Smart Cache",
+            tdp: "35 W",
+            maxMemory: "128 GB",
+            memoryTypes: "DDR5-5600, DDR4-3200",
+            graphics: "Intel® UHD Graphics 730",
+            socket: "LGA1700",
+            lithography: "Intel 7",
+            releaseDate: "Q1'23"
+        }
     }
 ];
 
@@ -389,6 +682,7 @@ function closeFullView() {
 
 // Initialize all CPU models
 document.addEventListener('DOMContentLoaded', () => {
+    checkAuth();
     const containers = [
         'model-container-3220',
         'model-container-3240',
@@ -407,7 +701,26 @@ document.addEventListener('DOMContentLoaded', () => {
         'model-container-7100',
         'model-container-7300',
         'model-container-7320',
-        'model-container-7350k'
+        'model-container-7350k',
+        'model-container-8100',
+        'model-container-8300',
+        'model-container-8350k',
+        'model-container-9100',
+        'model-container-9300',
+        'model-container-9350k',
+        'model-container-10100',
+        'model-container-10300',
+        'model-container-10320',
+        'model-container-10100f',
+        'model-container-11100',
+        'model-container-11300h',
+        'model-container-11100f',
+        'model-container-12100',
+        'model-container-12100f',
+        'model-container-12300',
+        'model-container-13100',
+        'model-container-13100f',
+        'model-container-13100t'
     ];
 
     containers.forEach(containerId => {

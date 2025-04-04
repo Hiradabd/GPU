@@ -273,6 +273,11 @@ function initMainView() {
 }
 
 function init() {
+    // اگر در صفحه لاگین نیستیم، وضعیت احراز هویت را چک کن
+    if (!window.location.pathname.includes('index.html')) {
+        checkAuth();
+    }
+    
     // Add this line at the beginning of init function
     document.title = "RTX Models";
     
@@ -1421,4 +1426,33 @@ window.addEventListener('load', () => {
             usernameDisplay.textContent = `Welcome, ${currentUser}!`;
         }
     }
-}); 
+});
+
+function login(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    
+    // اینجا می‌توانید منطق اعتبارسنجی اضافه کنید
+    localStorage.setItem('currentUser', username);
+    window.location.href = 'cpu-brands.html'; // ریدایرکت به صفحه اصلی بعد از لاگین
+}
+
+function createAccount(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('signup-password').value;
+    
+    // اینجا می‌توانید منطق ثبت‌نام اضافه کنید
+    localStorage.setItem('currentUser', username);
+    window.location.href = 'cpu-brands.html'; // ریدایرکت به صفحه اصلی بعد از ثبت‌نام
+}
+
+// اضافه کردن یک تابع برای چک کردن وضعیت لاگین در هر صفحه
+function checkAuth() {
+    const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser) {
+        window.location.href = 'index.html';
+    }
+} 

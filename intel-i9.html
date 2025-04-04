@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intel Core i9 Processors</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="menu-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container brands-container">
+        <div class="brands-wrapper">
+            <!-- i9-13900K -->
+            <div class="menu-item brand-item">
+                <i class="fas fa-microchip gpu-icon"></i>
+                <h2 class="brand-title">i9-13900K</h2>
+                <p class="cpu-specs">
+                    Base: 3.0 GHz<br>
+                    Boost: 5.8 GHz<br>
+                    Cores: 24 (8P+16E)<br>
+                    TDP: 125W
+                </p>
+                <button class="menu-button" onclick="window.location.href='i9-13900k.html'">View Details</button>
+            </div>
+
+            <!-- i9-13900KF -->
+            <div class="menu-item brand-item">
+                <i class="fas fa-microchip gpu-icon"></i>
+                <h2 class="brand-title">i9-13900KF</h2>
+                <p class="cpu-specs">
+                    Base: 3.0 GHz<br>
+                    Boost: 5.8 GHz<br>
+                    Cores: 24 (8P+16E)<br>
+                    TDP: 125W
+                </p>
+                <button class="menu-button" onclick="window.location.href='i9-13900kf.html'">View Details</button>
+            </div>
+
+            <!-- i9-12900K -->
+            <div class="menu-item brand-item">
+                <i class="fas fa-microchip gpu-icon"></i>
+                <h2 class="brand-title">i9-12900K</h2>
+                <p class="cpu-specs">
+                    Base: 3.2 GHz<br>
+                    Boost: 5.2 GHz<br>
+                    Cores: 16 (8P+8E)<br>
+                    TDP: 125W
+                </p>
+                <button class="menu-button" onclick="window.location.href='i9-12900k.html'">View Details</button>
+            </div>
+
+            <!-- i9-11900K -->
+            <div class="menu-item brand-item">
+                <i class="fas fa-microchip gpu-icon"></i>
+                <h2 class="brand-title">i9-11900K</h2>
+                <p class="cpu-specs">
+                    Base: 3.5 GHz<br>
+                    Boost: 5.3 GHz<br>
+                    Cores: 8<br>
+                    TDP: 125W
+                </p>
+                <button class="menu-button" onclick="window.location.href='i9-11900k.html'">View Details</button>
+            </div>
+
+            <!-- i9-10900K -->
+            <div class="menu-item brand-item">
+                <i class="fas fa-microchip gpu-icon"></i>
+                <h2 class="brand-title">i9-10900K</h2>
+                <p class="cpu-specs">
+                    Base: 3.7 GHz<br>
+                    Boost: 5.3 GHz<br>
+                    Cores: 10<br>
+                    TDP: 125W
+                </p>
+                <button class="menu-button" onclick="window.location.href='i9-10900k.html'">View Details</button>
+            </div>
+
+            <!-- i9-9900K -->
+            <div class="menu-item brand-item">
+                <i class="fas fa-microchip gpu-icon"></i>
+                <h2 class="brand-title">i9-9900K</h2>
+                <p class="cpu-specs">
+                    Base: 3.6 GHz<br>
+                    Boost: 5.0 GHz<br>
+                    Cores: 8<br>
+                    TDP: 95W
+                </p>
+                <button class="menu-button" onclick="window.location.href='i9-9900k.html'">View Details</button>
+            </div>
+        </div>
+        <button class="back-button" onclick="window.location.href='intel.html'">Back</button>
+    </div>
+
+    <script>
+        // چک کردن وضعیت لاگین قبل از لود صفحه
+        const currentUser = localStorage.getItem('currentUser');
+        if (!currentUser) {
+            window.location.href = 'index.html';
+        }
+    </script>
+    <script src="menu.js"></script>
+</body>
+</html> 

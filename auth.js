@@ -64,10 +64,12 @@ function login(event) {
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
+        // ذخیره وضعیت لاگین
+        localStorage.setItem('currentUser', JSON.stringify(user));
         // هدایت به صفحه اصلی
         window.location.href = 'home.html';
     } else {
-        alert('Invalid username or password!');
+        alert('نام کاربری یا رمز عبور اشتباه است!');
     }
 }
 
@@ -83,8 +85,17 @@ window.addEventListener('load', () => {
     }
 });
 
-// اضافه کردن این کد به auth.js
+// اضافه کردن این تابع در ابتدای فایل
+function checkAuth() {
+    const currentUser = localStorage.getItem('currentUser');
+    if (!currentUser && !window.location.pathname.endsWith('index.html')) {
+        window.location.href = 'index.html';
+    }
+}
+
+// اضافه کردن این خط به DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
+    checkAuth();
     // اضافه کردن event listener به همه آیکون‌های چشم
     const toggleButtons = document.querySelectorAll('.password-toggle');
     
